@@ -6091,6 +6091,296 @@
   .sns-sub-btn:hover {
     background: rgba(255, 255, 255, 0.14);
   }
+
+  /* ==========================================================================
+     PERFORMANCE & ANTI-STUTTER OPTIMIZATION (Modern Web Guidance)
+     - Defer offscreen rendering via content-visibility: auto + contain-intrinsic-size
+     - Isolate continuous marquee & ticker tracks with CSS containment
+     ========================================================================== */
+  .kpro-graph-section,
+  .kpro-ban1-section,
+  .scam-guard-section,
+  .sns-hub-section,
+  .live-ticker-section,
+  .section-block,
+  .final-vip-cta-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto none auto 720px;
+  }
+
+  .vehicle-card,
+  .review-card,
+  .buyer-country-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto none auto 420px;
+  }
+
+  @supports not (content-visibility: auto) {
+    .kpro-graph-section,
+    .kpro-ban1-section,
+    .scam-guard-section,
+    .sns-hub-section,
+    .live-ticker-section,
+    .section-block,
+    .final-vip-cta-section,
+    .vehicle-card,
+    .review-card,
+    .buyer-country-card {
+      contain: layout style paint;
+    }
+  }
+
+  .kpro-marquee-viewport,
+  .live-ticker-stream-viewport,
+  .live-board-downward-viewport {
+    contain: layout style paint;
+  }
+
+  /* ==========================================================================
+     EXECUTIVE 4-PILLAR SIGNATURE RIBBON & SCOREBOARD UI
+     ========================================================================== */
+  .byungguk-4pillars-ribbon {
+    background: linear-gradient(180deg, #060b14 0%, #0a1426 100%);
+    padding-block: 2.25rem;
+    border-block-end: 1px solid rgba(28, 219, 131, 0.22);
+  }
+
+  .pillars-4-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .pillars-4-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .pillars-4-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .pillar-card {
+    background: linear-gradient(145deg, rgba(15, 25, 45, 0.95) 0%, rgba(8, 14, 26, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-block-start: 3px solid #1cdb83;
+    border-radius: 16px;
+    padding: 1.25rem 1.2rem;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-3px);
+    border-color: #ffdf4b;
+  }
+
+  .pillar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .pillar-num {
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: #94a3b8;
+  }
+
+  .pillar-tag {
+    background: rgba(28, 219, 131, 0.15);
+    color: #1cdb83;
+    border: 1px solid rgba(28, 219, 131, 0.4);
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+  }
+
+  .pillar-title {
+    font-size: 1.08rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.32;
+  }
+
+  .pillar-title span {
+    color: #ffdf4b;
+  }
+
+  .pillar-desc {
+    font-size: 0.83rem;
+    color: #cbd5e1;
+    line-height: 1.55;
+  }
+
+  .ticker-cards-grid.is-packed-8 {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 640px) {
+    .ticker-cards-grid.is-packed-8 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ticker-cards-grid.is-packed-8 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .reviews-satisfaction-scoreboard {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.85rem;
+    background: linear-gradient(135deg, #061224 0%, #082238 55%, #053b28 100%);
+    border: 1.5px solid rgba(28, 219, 131, 0.45);
+    border-radius: 18px;
+    padding: 1.35rem 1.5rem;
+    margin-block-end: 2rem;
+    box-shadow: 0 18px 40px -12px rgba(6, 10, 18, 0.25);
+  }
+
+  @media (min-width: 640px) {
+    .reviews-satisfaction-scoreboard {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews-satisfaction-scoreboard {
+      grid-template-columns: 1.25fr 1fr 1fr 1fr;
+    }
+  }
+
+  .reviews-satisfaction-scoreboard .score-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22rem;
+    padding: 0.65rem 0.85rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+
+  .reviews-satisfaction-scoreboard .score-col.is-highlight {
+    background: rgba(254, 243, 199, 0.12);
+    border-color: rgba(255, 223, 75, 0.55);
+  }
+
+  .reviews-satisfaction-scoreboard .score-eyebrow {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #94a3b8;
+  }
+
+  .reviews-satisfaction-scoreboard .score-stars {
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+  }
+
+  .reviews-satisfaction-scoreboard .score-val {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #ffffff;
+  }
+
+  .reviews-satisfaction-scoreboard .score-sub {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #e2e8f0;
+  }
+
+  .final-vip-cta-section {
+    background: radial-gradient(circle at 80% 20%, rgba(28, 219, 131, 0.15), transparent 45%),
+      linear-gradient(165deg, #050a14 0%, #0a182e 100%);
+    padding-block: 4rem;
+    border-block-start: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .final-vip-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    background: rgba(15, 23, 42, 0.82);
+    border: 1.5px solid rgba(212, 175, 55, 0.45);
+    border-radius: 24px;
+    padding: clamp(1.5rem, 3vw, 2.75rem);
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45);
+    align-items: center;
+  }
+
+  @media (min-width: 960px) {
+    .final-vip-card {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .final-vip-title {
+    font-size: clamp(1.6rem, 2.6vw, 2.35rem);
+    font-weight: 900;
+    color: #ffffff;
+    margin-block: 0.85rem;
+    line-height: 1.28;
+  }
+
+  .final-vip-title span {
+    color: #ffdf4b;
+  }
+
+  .final-vip-desc {
+    font-size: 0.98rem;
+    color: #cbd5e1;
+    line-height: 1.65;
+    margin-block-end: 1.25rem;
+  }
+
+  .final-vip-desc strong {
+    color: #1cdb83;
+  }
+
+  .final-vip-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .final-vip-badges span {
+    background: rgba(28, 219, 131, 0.14);
+    border: 1px solid rgba(28, 219, 131, 0.4);
+    color: #96ffb9;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 0.38rem 0.8rem;
+    border-radius: 999px;
+  }
+
+  .final-vip-form {
+    background: #ffffff;
+    color: #0f172a;
+    padding: 1.5rem;
+    border-radius: 18px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+  }
+
+  .final-vip-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-block-start: 0.85rem;
+  }
+
 }
 
 @layer utilities {

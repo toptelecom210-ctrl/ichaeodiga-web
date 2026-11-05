@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   PhoneCall,
@@ -54,9 +54,10 @@ export default function MobileAppClient() {
 
   useEffect(() => {
     const t = setInterval(() => {
+      if (typeof document !== "undefined" && document.hidden) return;
       setMLiveOffset((prev) => (prev + 1) % LIVE_TICKER_ITEMS.length);
       setMTodayCount((prev) => (prev < 299 ? prev + 1 : 164));
-    }, 2200);
+    }, 4800);
     const onScroll = () => {
       setMScrolled(window.scrollY > 120);
     };
@@ -93,6 +94,36 @@ export default function MobileAppClient() {
   const [activeVideo, setActiveVideo] = useState<ByunggukVideoProof>(
     BYUNGGUK_FIELD_VIDEOS[0]
   );
+
+  const mDailyShowroomVehicles = useMemo(() => {
+    const baseList =
+      mSelectedCat === "전체"
+        ? EXPORT_VEHICLES
+        : EXPORT_VEHICLES.filter((v) => v.category === mSelectedCat);
+    const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+    const daySeed = Math.floor(nowKst.getTime() / 86400000);
+    const len = baseList.length;
+    const shift = len > 0 ? (daySeed * 2) % len : 0;
+    const rotated =
+      mSelectedCat === "전체" && len > 2
+        ? [...baseList.slice(shift), ...baseList.slice(0, shift)]
+        : baseList;
+
+    return rotated.map((v, vIdx) => {
+      const daysAgo = Math.floor(vIdx / 2);
+      const slotInDay = (vIdx % 2) + 1;
+      const d = new Date(nowKst.getTime() - daysAgo * 86400000);
+      const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+      const dd = String(d.getUTCDate()).padStart(2, "0");
+      const dailyLabel =
+        daysAgo === 0
+          ? `🔥 오늘(${mm}.${dd}) ${slotInDay}호차 매입완료`
+          : daysAgo === 1
+            ? `✓ 어제(${mm}.${dd}) ${slotInDay}호차 매입완료`
+            : `✓ ${mm}월 ${dd}일 (${slotInDay}호차 매입완료)`;
+      return { v, vIdx, dailyLabel };
+    });
+  }, [mSelectedCat]);
 
   const currentSimMaker =
     SIMULATOR_CATALOG[simMakerIdx] || SIMULATOR_CATALOG[0];
@@ -870,7 +901,7 @@ export default function MobileAppClient() {
                   })()}
 
                   <div className="m-ticker-list">
-                    {Array.from({ length: 8 }, (_, slotIdx) => {
+                    {Array.from({ length: 5 }, (_, slotIdx) => {
                       const item =
                         LIVE_TICKER_ITEMS[
                           (mLiveOffset + slotIdx) % LIVE_TICKER_ITEMS.length
@@ -942,7 +973,7 @@ export default function MobileAppClient() {
                           alt={slide.carName}
                           width={220}
                           height={155}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div className="m-comp-info">
                           <div className="m-comp-title">
@@ -1007,7 +1038,7 @@ export default function MobileAppClient() {
                           alt={st.title}
                           width={46}
                           height={46}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div>
                           <strong>
@@ -1025,9 +1056,28 @@ export default function MobileAppClient() {
                   <div className="m-sec-head">
                     <h2>이차어디가(병국이수출) 실제 출장 매입후기</h2>
                   </div>
-                  <p className="m-sec-sub">
-                    폐차·내수 감가 대신 해외 바이어 최고가로 당일 송금받으신 전국 차주님들의 생생한 직수출 후기입니다.
-                  </p>
+                  <div
+                    style={{
+                      background: "linear-gradient(90deg, #061326 0%, #054a32 100%)",
+                      color: "#ffffff",
+                      borderRadius: "10px",
+                      padding: "0.55rem 0.7rem",
+                      marginBottom: "0.6rem",
+                      border: "1px solid #1cdb83",
+                      fontSize: "0.75rem",
+                      fontWeight: 800,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.2rem",
+                    }}
+                  >
+                    <span style={{ color: "#ffdf4b", fontWeight: 900 }}>
+                      ⭐⭐⭐⭐⭐⭐⭐ 차주 체감 만족도 별 5개 만점에 7개 돌파!
+                    </span>
+                    <span style={{ color: "#e2e8f0", fontSize: "0.71rem" }}>
+                      📅 매일 2대씩(1호차·2호차) 당일 직수출 매입 후기가 자동 등록됩니다.
+                    </span>
+                  </div>
                   <div className="m-vehicle-stack">
                     {CUSTOMER_REVIEWS.slice(0, mReviewCount).map((rev) => (
                       <article
@@ -1040,7 +1090,7 @@ export default function MobileAppClient() {
                           alt={rev.carModel}
                           width={110}
                           height={82}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div className="m-vehicle-body">
                           <span
@@ -1365,7 +1415,7 @@ export default function MobileAppClient() {
                         alt={v.imageAlt}
                         width={120}
                         height={90}
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                       />
                       <div className="m-vehicle-body">
                         <span
@@ -1425,7 +1475,7 @@ export default function MobileAppClient() {
                           alt={vid.title}
                           width={180}
                           height={280}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <span className="m-video-play">▶ 영상재생</span>
                       </div>

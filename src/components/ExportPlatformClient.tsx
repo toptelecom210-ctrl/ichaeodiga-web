@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   PhoneCall,
   MessageSquare,
@@ -165,10 +165,13 @@ export default function ExportPlatformClient() {
     "ALL" | "youtube" | "instagram" | "tiktok" | "kakao"
   >("ALL");
 
-  const filteredReviews100 =
-    reviewYearFilter === "ALL"
-      ? CUSTOMER_REVIEWS
-      : CUSTOMER_REVIEWS.filter((r) => r.date.startsWith(reviewYearFilter));
+  const filteredReviews100 = useMemo(
+    () =>
+      reviewYearFilter === "ALL"
+        ? CUSTOMER_REVIEWS
+        : CUSTOMER_REVIEWS.filter((r) => r.date.startsWith(reviewYearFilter)),
+    [reviewYearFilter]
+  );
 
   // Derived Simulator Model Data
   const availableMakers = SIMULATOR_CATALOG.filter(
@@ -269,20 +272,18 @@ export default function ExportPlatformClient() {
     }
   }, []);
 
-  // KPRO Benchmark: 2-second auto-cycling active card highlight for 6-Card Grid (Intro + 5 Steps), 4-second Hero Slider, and 2.2-second Live Inquiry/Remittance Rotation
+  // Anti-Stutter Timer Optimization: Consolidated intervals + Page Visibility API guard (0% background CPU)
   useEffect(() => {
-    const stepTimer = setInterval(() => {
-      setActiveStepIdx((prev) => (prev + 1) % (KPRO_FIVE_STEPS.length + 1));
-    }, 2000);
     const heroTimer = setInterval(() => {
+      if (typeof document !== "undefined" && document.hidden) return;
       setHeroSlideIdx((prev) => (prev + 1) % KPRO_HERO_SLIDES.length);
-    }, 4000);
+    }, 6500);
     const liveRotTimer = setInterval(() => {
+      if (typeof document !== "undefined" && document.hidden) return;
       setLiveRotOffset((prev) => (prev + 1) % LIVE_TICKER_ITEMS.length);
       setLiveTodayCount((prev) => (prev < 299 ? prev + 1 : 164));
-    }, 2200);
+    }, 4800);
     return () => {
-      clearInterval(stepTimer);
       clearInterval(heroTimer);
       clearInterval(liveRotTimer);
     };
@@ -316,26 +317,7 @@ export default function ExportPlatformClient() {
     return () => observer.disconnect();
   }, []);
 
-  // Infinite Möbius Scroll Continuation
-  useEffect(() => {
-    const sentinel = bottomSentinelRef.current;
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting && !hasConverted) {
-          setMoebiusCycles((prev) =>
-            prev.length < 12 ? [...prev, prev.length + 1] : prev
-          );
-        }
-      },
-      { rootMargin: "320px" }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [hasConverted]);
+  // Infinite Möbius observer removed to keep DOM lightweight and 60fps scroll smooth
 
   // Sync aria-invalid and provide WeakMap fallback for :user-invalid (per `validate-input-after-interaction`)
   useEffect(() => {
@@ -650,10 +632,39 @@ export default function ExportPlatformClient() {
     markInquiryCompleted(quoteData);
   };
 
-  const filteredVehicles =
-    selectedCategory === "전체"
-      ? EXPORT_VEHICLES
-      : EXPORT_VEHICLES.filter((v) => v.category === selectedCategory);
+  const filteredVehicles = useMemo(
+    () =>
+      selectedCategory === "전체"
+        ? EXPORT_VEHICLES
+        : EXPORT_VEHICLES.filter((v) => v.category === selectedCategory),
+    [selectedCategory]
+  );
+
+  const dailyShowroomCards = useMemo(() => {
+    const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+    const daySeed = Math.floor(nowKst.getTime() / 86400000);
+    const len = filteredVehicles.length;
+    const shift = len > 0 ? (daySeed * 2) % len : 0;
+    const rotated =
+      selectedCategory === "전체" && len > 2
+        ? [...filteredVehicles.slice(shift), ...filteredVehicles.slice(0, shift)]
+        : filteredVehicles;
+
+    return rotated.map((item, vIdx) => {
+      const daysAgo = Math.floor(vIdx / 2);
+      const slotInDay = (vIdx % 2) + 1;
+      const d = new Date(nowKst.getTime() - daysAgo * 86400000);
+      const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+      const dd = String(d.getUTCDate()).padStart(2, "0");
+      const dailyPurchaseLabel =
+        daysAgo === 0
+          ? `🔥 오늘(${mm}.${dd}) ${slotInDay}호차 매입완료`
+          : daysAgo === 1
+            ? `✓ 어제(${mm}.${dd}) ${slotInDay}호차 매입완료`
+            : `✓ ${mm}월 ${dd}일 (${slotInDay}호차 매입완료)`;
+      return { item, vIdx, dailyPurchaseLabel };
+    });
+  }, [filteredVehicles, selectedCategory]);
 
   const smsHref = `sms:${SITE_CONFIG.phone}?body=${encodeURIComponent(
     SITE_CONFIG.smsBody
@@ -1292,6 +1303,76 @@ export default function ExportPlatformClient() {
           </div>
         </section>
 
+        {/* EXECUTIVE 4-PILLAR SIGNATURE RIBBON: 왜 다른 데 다 가보고 마지막에 병국이한테 올까? */}
+        <section
+          className="byungguk-4pillars-ribbon"
+          aria-label="이차어디가 병국이수출 4대 절대 보증"
+        >
+          <div className="container">
+            <div className="pillars-4-grid">
+              <article className="pillar-card">
+                <div className="pillar-top">
+                  <span className="pillar-num">DIFFERENCE 01</span>
+                  <span className="pillar-tag">최고가 보증</span>
+                </div>
+                <h3 className="pillar-title">
+                  타사 견적 3곳 먼저 받고
+                  <br />
+                  <span>맨 마지막에 부르세요!</span>
+                </h3>
+                <p className="pillar-desc">
+                  폐차장·딜러·타 수출업체 어디든 먼저 다 찔러보세요. 마지막에 병국이에게 오시면 딜러 뒷마진을 뺀 바이어 직통가로 무조건 그 위를 맞춰드립니다.
+                </p>
+              </article>
+
+              <article className="pillar-card">
+                <div className="pillar-top">
+                  <span className="pillar-num">DIFFERENCE 02</span>
+                  <span className="pillar-tag">수수료 0원</span>
+                </div>
+                <h3 className="pillar-title">
+                  딜러가 챙기던 뒷마진
+                  <br />
+                  <span>100~300만 원 차주 직격!</span>
+                </h3>
+                <p className="pillar-desc">
+                  &ldquo;폐차밖에 안 된다&rdquo;며 헐값에 사서 다음 날 수출단지에 되파는 중간 브로커 없이, 인천 수출단지 해외 바이어에게 다이렉트로 연결합니다.
+                </p>
+              </article>
+
+              <article className="pillar-card">
+                <div className="pillar-top">
+                  <span className="pillar-num">DIFFERENCE 03</span>
+                  <span className="pillar-tag">실명·얼굴 보증</span>
+                </div>
+                <h3 className="pillar-title">
+                  고객 10명 중 6명은
+                  <br />
+                  <span>얼굴 믿고 차부터 선탁송!</span>
+                </h3>
+                <p className="pillar-desc">
+                  유튜브·인스타·틱톡에 얼굴과 이름을 다 걸고 장사하는 사람이라 거짓말을 못 합니다. 키만 넣어 먼저 보내주셔도 도착 즉시 10분 내 칼송금합니다.
+                </p>
+              </article>
+
+              <article className="pillar-card">
+                <div className="pillar-top">
+                  <span className="pillar-num">DIFFERENCE 04</span>
+                  <span className="pillar-tag">감가 0원 원칙</span>
+                </div>
+                <h3 className="pillar-title">
+                  현장 10원이라도 깎으면
+                  <br />
+                  <span>그 자리서 유튜브 접습니다!</span>
+                </h3>
+                <p className="pillar-desc">
+                  주행거리 30만km+, 단순교환, 외판 스크래치 핑계로 현장에서 말 바꾸는 양아치 짓 절대 안 합니다. 처음 약속한 견적 100% 그대로 입금합니다.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         {/* KPRO BENCHMARK SECTION 1 (section.review): 거짓 광고 예방 & 진짜 수출가 비교 */}
         <section className="kpro-review-section" id="kpro-price-gap">
           <div className="container">
@@ -1329,7 +1410,7 @@ export default function ExportPlatformClient() {
                 className="kpro-vs-calc-float"
                 width={120}
                 height={132}
-                loading="lazy"
+                loading="lazy" decoding="async"
               />
             </div>
           </div>
@@ -1354,7 +1435,7 @@ export default function ExportPlatformClient() {
                         alt={`${slide.carName} 리뷰사진`}
                         width={290}
                         height={218}
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                         style={{
                           width: "100%",
                           height: "100%",
@@ -1443,7 +1524,7 @@ export default function ExportPlatformClient() {
                       alt="주행거리 무감가 수출 안내"
                       width={520}
                       height={220}
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                     />
                   </div>
                 </div>
@@ -1471,7 +1552,7 @@ export default function ExportPlatformClient() {
                       alt="사고이력 무감가 수출 안내"
                       width={520}
                       height={220}
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                     />
                   </div>
                 </div>
@@ -1578,7 +1659,7 @@ export default function ExportPlatformClient() {
                     alt={st.title}
                     width={76}
                     height={76}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                   />
                   <h3
                     className="text-obsidian fw-800"
@@ -1624,7 +1705,7 @@ export default function ExportPlatformClient() {
                 alt="중고차수출 1위 메달"
                 width={240}
                 height={240}
-                loading="lazy"
+                loading="lazy" decoding="async"
                 style={{ maxWidth: "220px", height: "auto", marginInline: "auto" }}
               />
             </div>
@@ -1665,7 +1746,7 @@ export default function ExportPlatformClient() {
                   alt="수출 선박 사진"
                   width={560}
                   height={260}
-                  loading="lazy"
+                  loading="lazy" decoding="async"
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
               </div>
@@ -1693,7 +1774,7 @@ export default function ExportPlatformClient() {
                     alt={diff.title}
                     width={72}
                     height={72}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                   />
                   <h3
                     style={{
@@ -1739,7 +1820,7 @@ export default function ExportPlatformClient() {
                 alt="수출 차량 이미지"
                 width={420}
                 height={190}
-                loading="lazy"
+                loading="lazy" decoding="async"
                 style={{ maxWidth: "min(100%, 400px)", height: "auto" }}
               />
             </div>
@@ -1963,9 +2044,9 @@ export default function ExportPlatformClient() {
               );
             })()}
 
-            {/* Packed 12-Card Full Grid (4x3 Dense Layout Rotating Continuously Every 2.2s) */}
-            <div className="ticker-cards-grid is-packed-12">
-              {Array.from({ length: 12 }, (_, slotIdx) => {
+            {/* Streamlined 8-Card Executive Grid (4x2 Crisp Layout) */}
+            <div className="ticker-cards-grid is-packed-8">
+              {Array.from({ length: 8 }, (_, slotIdx) => {
                 const item =
                   LIVE_TICKER_ITEMS[
                     (liveRotOffset + slotIdx) % LIVE_TICKER_ITEMS.length
@@ -2259,7 +2340,7 @@ export default function ExportPlatformClient() {
                     className="sim-result-car-img"
                     src={currentSimModel.imageUrl}
                     alt={`${currentSimModel.modelName} 실사 차량`}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                     width={640}
                     height={360}
                   />
@@ -2491,7 +2572,7 @@ export default function ExportPlatformClient() {
                     <img
                       src="/images/byungguk/ZGRimSgReGw-maxres1.jpg"
                       alt="병국 대표"
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                       width={52}
                       height={52}
                     />
@@ -2739,7 +2820,7 @@ export default function ExportPlatformClient() {
                           className="sns-handle-avatar"
                           width={34}
                           height={34}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div>
                           <div
@@ -2772,7 +2853,7 @@ export default function ExportPlatformClient() {
                             alt="유튜브 현장 영상 1"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             ▶ 현장직캠
@@ -2784,7 +2865,7 @@ export default function ExportPlatformClient() {
                             alt="유튜브 수출 차량"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             ▶ 당일송금
@@ -2864,7 +2945,7 @@ export default function ExportPlatformClient() {
                           className="sns-handle-avatar"
                           width={34}
                           height={34}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div>
                           <div
@@ -2897,7 +2978,7 @@ export default function ExportPlatformClient() {
                             alt="인스타그램 입고 피드 1"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             📸 릴스인기
@@ -2909,7 +2990,7 @@ export default function ExportPlatformClient() {
                             alt="인스타그램 입고 피드 2"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             📸 당일입고
@@ -2974,7 +3055,7 @@ export default function ExportPlatformClient() {
                           className="sns-handle-avatar"
                           width={34}
                           height={34}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div>
                           <div
@@ -3007,7 +3088,7 @@ export default function ExportPlatformClient() {
                             alt="틱톡 쇼츠 차량 1"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             🎵 30초비교
@@ -3019,7 +3100,7 @@ export default function ExportPlatformClient() {
                             alt="틱톡 쇼츠 차량 2"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             🎵 최고가인증
@@ -3093,7 +3174,7 @@ export default function ExportPlatformClient() {
                           className="sns-handle-avatar"
                           width={34}
                           height={34}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                         />
                         <div>
                           <div
@@ -3126,7 +3207,7 @@ export default function ExportPlatformClient() {
                             alt="카톡 사진 견적 예시 1"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             💬 사진견적
@@ -3138,7 +3219,7 @@ export default function ExportPlatformClient() {
                             alt="카톡 사진 견적 예시 2"
                             width={200}
                             height={125}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                           />
                           <span className="sns-preview-thumb-tag">
                             💬 5분회신
@@ -3201,11 +3282,11 @@ export default function ExportPlatformClient() {
                       className="byungguk-video-thumb-box"
                       onClick={() => openVideoProofModal(vid)}
                     >
-                      {/* Below-the-fold images use loading="lazy" ALONE per `optimize-image-priority` */}
+                      {/* Below-the-fold images use loading="lazy" decoding="async" ALONE per `optimize-image-priority` */}
                       <img
                         src={vid.imageSrc}
                         alt={`이차어디가 병국 현장 영상 - ${vid.title}`}
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                         width={405}
                         height={720}
                       />
@@ -3257,7 +3338,7 @@ export default function ExportPlatformClient() {
                   <img
                     src="/images/byungguk/ZGRimSgReGw-maxres1.jpg"
                     alt="병국 대표"
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                     width={52}
                     height={52}
                   />
@@ -3456,36 +3537,13 @@ export default function ExportPlatformClient() {
             </div>
 
             <div className="vehicles-grid">
-              {(() => {
-                const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
-                const daySeed = Math.floor(nowKst.getTime() / 86400000);
-                const len = filteredVehicles.length;
-                const shift = len > 0 ? (daySeed * 2) % len : 0;
-                const dailyRotatedVehicles =
-                  selectedCategory === "전체" && len > 2
-                    ? [...filteredVehicles.slice(shift), ...filteredVehicles.slice(0, shift)]
-                    : filteredVehicles;
-
-                return dailyRotatedVehicles.map((item, vIdx) => {
-                  const daysAgo = Math.floor(vIdx / 2);
-                  const slotInDay = (vIdx % 2) + 1;
-                  const d = new Date(nowKst.getTime() - daysAgo * 86400000);
-                  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
-                  const dd = String(d.getUTCDate()).padStart(2, "0");
-                  const dailyPurchaseLabel =
-                    daysAgo === 0
-                      ? `🔥 오늘(${mm}.${dd}) ${slotInDay}호차 매입완료`
-                      : daysAgo === 1
-                        ? `✓ 어제(${mm}.${dd}) ${slotInDay}호차 매입완료`
-                        : `✓ ${mm}월 ${dd}일 (${slotInDay}호차 매입완료)`;
-
-                  return (
+              {dailyShowroomCards.map(({ item, vIdx, dailyPurchaseLabel }) => (
                 <article key={item.id} className="vehicle-card">
                   <img
                     className="vehicle-card-img"
                     src={item.imageUrl}
                     alt={item.imageAlt}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                     width={800}
                     height={500}
                   />
@@ -3590,9 +3648,7 @@ export default function ExportPlatformClient() {
                     </div>
                   </footer>
                 </article>
-                  );
-                });
-              })()}
+              ))}
             </div>
           </div>
         </section>
@@ -3675,7 +3731,7 @@ export default function ExportPlatformClient() {
                     <img
                       src="/images/byungguk/jJpmviXfkLQ-maxres1.jpg"
                       alt="병국 대표 포터2 현장 출장"
-                      loading="lazy"
+                      loading="lazy" decoding="async"
                       width={52}
                       height={52}
                     />
@@ -3930,6 +3986,30 @@ export default function ExportPlatformClient() {
               </p>
             </div>
 
+            {/* Executive Customer Satisfaction 7-Star Summary Scoreboard */}
+            <div className="reviews-satisfaction-scoreboard">
+              <div className="score-col is-highlight">
+                <span className="score-eyebrow">차주님 실제 체감 만족도</span>
+                <strong className="score-stars">⭐⭐⭐⭐⭐⭐⭐</strong>
+                <span className="score-sub">별 5개 만점에 7개 돌파! (4.9~7.0★)</span>
+              </div>
+              <div className="score-col">
+                <span className="score-eyebrow">일일 실제 매입 업데이트</span>
+                <strong className="score-val">매일 2대 (1호·2호차)</strong>
+                <span className="score-sub">오늘·어제 출장 매입 차량 실시간 등록</span>
+              </div>
+              <div className="score-col">
+                <span className="score-eyebrow">현장 부당 감가율</span>
+                <strong className="score-val" style={{ color: "#1cdb83" }}>0.0% (감가 ZERO)</strong>
+                <span className="score-sub">현장 10원 감가 시 유튜브 박제 보증</span>
+              </div>
+              <div className="score-col">
+                <span className="score-eyebrow">비대면 선탁송 신뢰도</span>
+                <strong className="score-val" style={{ color: "#ffdf4b" }}>고객 60%+ 선탁송</strong>
+                <span className="score-sub">병국이 얼굴 믿고 차부터 보내는 직영점</span>
+              </div>
+            </div>
+
             <div className="reviews-grid">
               {filteredReviews100.slice(0, visibleReviewCount).map((rev) => (
                 <article key={rev.id} className="review-card">
@@ -3950,7 +4030,7 @@ export default function ExportPlatformClient() {
                           alt={`${rev.carModel} 이차어디가 실제 수출 매입 차량`}
                           width={400}
                           height={250}
-                          loading="lazy"
+                          loading="lazy" decoding="async"
                           style={{
                             width: "100%",
                             height: "100%",
@@ -4154,182 +4234,86 @@ export default function ExportPlatformClient() {
           </div>
         </section>
 
-        {/* Infinite Möbius Loop Continuation Stations */}
-        {moebiusCycles.map((cycleNum) => {
-          const spotlightVehicle =
-            EXPORT_VEHICLES[(cycleNum - 1) % EXPORT_VEHICLES.length];
-          const spotlightReview =
-            CUSTOMER_REVIEWS[(cycleNum - 1) % CUSTOMER_REVIEWS.length];
-          const spotlightVideo =
-            BYUNGGUK_FIELD_VIDEOS[(cycleNum - 1) % BYUNGGUK_FIELD_VIDEOS.length];
-
-          return (
-            <section
-              key={`moebius-cycle-${cycleNum}`}
-              className="moebius-loop-cycle"
-              aria-label={`무한 연결 수출 견적 스테이션 ${cycleNum}`}
-            >
-              <div className="container">
-                <div className="section-header">
-                  <span className="section-eyebrow">
-                    <RefreshCw size={14} aria-hidden="true" />
-                    <span>DIRECT VALUATION CONCIERGE #{cycleNum}</span>
-                  </span>
-                  <h2 className="section-title text-white">
-                    아직 내 차의 해외 바이어 최고가를 확인하지 않으셨나요?
-                  </h2>
-                  <p className="section-desc">
-                    지금 보고 계신{" "}
-                    <strong className="text-gold">
-                      {spotlightVehicle.name}
-                    </strong>{" "}
-                    차종은{" "}
-                    <strong className="text-gold">
-                      {spotlightVehicle.maxExtraProfit}
-                    </strong>{" "}
-                    혜택으로 진행됩니다. 아래에서 차종과 연락처만 입력해 즉시 확인하세요.
-                  </p>
-                </div>
-
-                <div className="moebius-cycle-card">
-                  <div className="ticker-header-row">
-                    <div className="quote-form-profile-row">
-                      <div className="byungguk-avatar-circle">
-                        <img
-                          src={spotlightVideo.imageSrc}
-                          alt="병국 대표 현장 모습"
-                          loading="lazy"
-                          width={52}
-                          height={52}
-                        />
-                      </div>
-                      <div>
-                        <span className="quote-form-badge">
-                          CASE STUDY #{cycleNum}
-                        </span>
-                        <h3 className="quote-form-title">
-                          {spotlightReview.carModel} ({spotlightReview.yearAndMileage}) —{" "}
-                          <span className="text-primary">
-                            {spotlightReview.extraGain}
-                          </span>
-                        </h3>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      className="btn-bridge-next"
-                      onClick={() =>
-                        handleSelectVehicleForQuote(spotlightVehicle.name)
-                      }
-                    >
-                      상단 메인 견적창으로 이동 ↑
-                    </button>
-                  </div>
-
-                  <form onSubmit={handleSubmitQuote}>
-                    <div className="form-row-2">
-                      <div className="form-group">
-                        <label
-                          htmlFor={`${uid}-loop-${cycleNum}-car`}
-                          className="form-label"
-                        >
-                          차량명 (차종) <span className="required-star">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id={`${uid}-loop-${cycleNum}-car`}
-                          list={`${uid}-car-models-list`}
-                          className="form-input"
-                          placeholder="예: 아반떼 AD, 포터2, 쏘렌토 R"
-                          required
-                          minLength={2}
-                          value={carModel}
-                          onChange={(e) => setCarModel(e.target.value)}
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label
-                          htmlFor={`${uid}-loop-${cycleNum}-phone`}
-                          className="form-label"
-                        >
-                          연락처 (휴대폰 번호){" "}
-                          <span className="required-star">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          id={`${uid}-loop-${cycleNum}-phone`}
-                          className="form-input"
-                          placeholder="010-0000-0000"
-                          required
-                          autoComplete="tel"
-                          inputMode="tel"
-                          pattern="[0-9\-+\s]{9,15}"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="form-row-2">
-                      <button type="submit" className="btn-submit-quote">
-                        <span>병국이에게 무료 견적 신청 완료하기</span>
-                        <ArrowRight size={19} aria-hidden="true" />
-                      </button>
-
-                      <a
-                        href={telHref}
-                        className="btn-hero-call"
-                        onClick={() => markInquiryCompleted()}
-                      >
-                        <PhoneCall size={18} aria-hidden="true" />
-                        <span>직통 전화 {SITE_CONFIG.phoneFormatted}</span>
-                      </a>
-                    </div>
-                  </form>
-
-                  <div className="moebius-bridge">
-                    <span className="text-sub fw-800">
-                      원하시는 메뉴로 바로 이동하실 수 있습니다
-                    </span>
-                    <div className="moebius-bridge-btns">
-                      <button
-                        type="button"
-                        className="btn-bridge-next"
-                        onClick={() =>
-                          void scrollToSectionAndFocus("price-simulator")
-                        }
-                      >
-                        실시간 시세계산기
-                      </button>
-                      <button
-                        type="button"
-                        className="btn-bridge-next"
-                        onClick={() =>
-                          void scrollToSectionAndFocus("export-vehicles")
-                        }
-                      >
-                        차종별 수출시세표
-                      </button>
-                      <button
-                        type="button"
-                        className="btn-bridge-next"
-                        onClick={() =>
-                          void scrollToSectionAndFocus("real-reviews")
-                        }
-                      >
-                        실제 매입후기
-                      </button>
-                    </div>
-                  </div>
+        {/* Final Executive VIP Direct Consultation Banner (Replaces bloated 12x duplicate loop) */}
+        <section
+          className="final-vip-cta-section"
+          id="final-vip-consult"
+          aria-label="하단 최종 최고가 직통 시세 조회"
+        >
+          <div className="container">
+            <div className="final-vip-card">
+              <div className="final-vip-left">
+                <span className="notice-badge">FINAL DIRECT CHECK · 브로커 수수료 0원</span>
+                <h2 className="final-vip-title">
+                  다른 곳 견적 다 받아보셨나요?
+                  <br />
+                  <span>마지막으로 병국이에게 30초만 물어보세요!</span>
+                </h2>
+                <p className="final-vip-desc">
+                  폐차장·딜러에 넘기기 직전 딱 한 번만 비교해 보세요. 차종과 연락처만 남겨주시면{" "}
+                  <strong>현장에서 단 10원도 바뀌지 않는 해외 바이어 직통 최고가</strong>를 병국이가 직접 안내해 드립니다.
+                </p>
+                <div className="final-vip-badges">
+                  <span>✓ 타사 견적 무조건 우대</span>
+                  <span>✓ 현장 감가 0원 보증</span>
+                  <span>✓ 전국 무료 탁송 · 당일 칼송금</span>
                 </div>
               </div>
-            </section>
-          );
-        })}
 
-        {/* Sentinel for Infinite Möbius Scroll */}
-        <div ref={bottomSentinelRef} aria-hidden="true" />
+              <form onSubmit={handleSubmitQuote} className="final-vip-form">
+                <div className="form-group">
+                  <label htmlFor={`${uid}-final-car`} className="form-label">
+                    차량명 또는 차량번호 <span className="required-star">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id={`${uid}-final-car`}
+                    list={`${uid}-car-models-list`}
+                    className="form-input"
+                    placeholder="예: 그랜저 HG, 포터2, 쏘렌토R 또는 12가 3456"
+                    required
+                    minLength={2}
+                    value={carModel}
+                    onChange={(e) => setCarModel(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor={`${uid}-final-phone`} className="form-label">
+                    연락처 (휴대폰 번호) <span className="required-star">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id={`${uid}-final-phone`}
+                    className="form-input"
+                    placeholder="010-0000-0000"
+                    required
+                    autoComplete="tel"
+                    inputMode="tel"
+                    pattern="[0-9\-+\s]{9,15}"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
+
+                <div className="final-vip-actions">
+                  <button type="submit" className="kpro-submit-btn">
+                    <span>🔥 병국이에게 마지막 최고가 찔러보기</span>
+                  </button>
+                  <a
+                    href={telHref}
+                    className="btn-hero-call"
+                    style={{ width: "100%", justifyContent: "center" }}
+                    onClick={() => markInquiryCompleted()}
+                  >
+                    <PhoneCall size={18} aria-hidden="true" />
+                    <span>직통 전화 {SITE_CONFIG.phoneFormatted}</span>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
