@@ -357,19 +357,19 @@ export default function MobileAppClient() {
 
                     <div className="m-hero-copy">
                       <h1 className="m-hero-title">
-                        중간 브로커 수수료 0원!
+                        타사 견적 다 받아오세요!
                         <br />
                         <span className="m-text-emerald">
-                          폐차·내수보다 돈이 더 남는 직수출
+                          마지막에 오시면 무조건 이겨드립니다!
                         </span>
                       </h1>
                       <p className="m-hero-desc">
-                        일반 딜러 3단계 수수료를 없애고 해외 바이어와 직통 연결합니다. <strong>고객 60% 이상이 유튜브 속 병국이 얼굴만 믿고 차부터 편하게 보내주시는</strong> 100% 무감가 직영 센터입니다.
+                        딜러가 헐값에 사서 수출로 빼돌리던 뒷마진, 사장님 통장에 100% 꽂아드립니다! <strong>손님 10명 중 6명이 병국이 얼굴 하나 믿고 돈 받기 전에 차부터 보내시는</strong> 무감가 직영 센터입니다.
                       </p>
                       <div className="m-hero-badges">
-                        <span>✓ 브로커 수수료 0원</span>
-                        <span>✓ 60% 얼굴믿고 선탁송</span>
-                        <span>✓ 현장 억지감가 ZERO</span>
+                        <span>🔥 타사견적 무조건격파</span>
+                        <span>🔥 60% 얼굴믿고 선탁송</span>
+                        <span>🔥 10원감가시 유튜브박제</span>
                       </div>
                     </div>
                   </div>
@@ -514,8 +514,8 @@ export default function MobileAppClient() {
                       >
                         <span>
                           {isSubmitting
-                            ? "실시간 시세 접수 중..."
-                            : "내 차 최고가 수출시세 조회하기"}
+                            ? "바이어 최고가 대조 중..."
+                            : "🔥 딜러 뒷마진 뺀 진짜 최고가 찔러보기"}
                         </span>
                         <ArrowRight size={18} aria-hidden="true" />
                       </button>

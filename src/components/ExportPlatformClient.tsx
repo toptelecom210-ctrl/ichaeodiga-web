@@ -668,8 +668,8 @@ export default function ExportPlatformClient() {
           <div className="top-notice-left">
             <span className="notice-badge">REAL FACE GUARANTEE</span>
             <span>
-              유튜브·인스타·틱톡 얼굴 다 공개하고 일하는 <strong>병국(뺑국이)</strong> 실명 보증 ·
-              <strong>중간 브로커 수수료 0원</strong> · <strong>고객 60% 이상이 얼굴 믿고 차부터 보내주시는 안심 직거래</strong>
+              🔥 <strong>타사 견적 3군데 먼저 받고 마지막에 오세요! 무조건 이겨드립니다</strong> ·
+              현장 10원이라도 감가 시 <strong>유튜브 실명 박제 OK</strong> · <strong>고객 60%가 병국이 얼굴 믿고 차부터 보내는 곳</strong>
             </span>
           </div>
           <div className="top-sns-quick-row">
@@ -1020,15 +1020,14 @@ export default function ExportPlatformClient() {
 
                   <div>
                     <h2 className="byungguk-pledge-title">
-                      달콤한 거짓말로 설레게 한 뒤,
+                      다른 데 3군데 다 찔러보고 맨 마지막에 오세요!
                       <br />
                       <span className="text-gold">
-                        현장에서 상처 주는 일은 절대 하지 않습니다.
+                        타사 견적 무조건 이겨드리며, 10원이라도 깎으면 유튜브 접겠습니다!
                       </span>
                     </h2>
                     <p className="byungguk-pledge-quote">
-                      &ldquo;솔직히 &lsquo;시세보다 무조건 더 드린다&rsquo;고 거짓말하면 당장 오늘
-                      손님은 더 모을 수 있겠죠. 하지만 <strong>유튜브·인스타·틱톡에 제 얼굴을 다 걸고 살아가는 저로서는 도저히 할 수 없는 일</strong>입니다. 내 가족과 구독자가 지켜보는 이 얼굴에 부끄럽지 않게, 처음부터 끝까지 말 한마디 바뀌지 않는 정직한 거래만 약속드립니다.&rdquo;
+                      &ldquo;폐차장·딜러가 &lsquo;폐차밖에 안 된다&rsquo;며 헐값에 가져간 사장님 차, 바로 다음 날 인천 수출단지에 되팔아 딜러 배만 불립니다. 왜 내 차 팔아서 남 좋은 일 시키십니까? <strong>유튜브·인스타·틱톡에 제 얼굴 다 까고 장사하는 병국이는 거짓말을 못 합니다.</strong> 그래서 손님 10분 중 6분은 돈 받기 전에 제 얼굴 하나 믿고 차부터 편하게 탁송 보내주십니다!&rdquo;
                     </p>
 
                     <div
@@ -1092,13 +1091,11 @@ export default function ExportPlatformClient() {
               <div ref={quoteCardRef} className="kpro-main-consult">
                 <div className="kpro-consult-head">
                   <h2>
-                    <span style={{ color: "#1cdb83" }}>이차어디가(병국이수출)</span>{" "}
-                    무료상담
+                    🔥 <span style={{ color: "#1cdb83" }}>타사 견적 격파</span>{" "}
+                    바이어 직통 조회
                   </h2>
-                  <p>
-                    ※ 개인정보 허위 작성 시
-                    <br />
-                    IP추적 및 민·형사 책임 강력대응 ※
+                  <p style={{ color: "#ffdf4b", fontWeight: 900 }}>
+                    다른 곳 견적 다 받아오세요! 마지막에 부르시면 무조건 그 위를 맞춰드립니다!
                   </p>
                 </div>
 
@@ -1242,8 +1239,8 @@ export default function ExportPlatformClient() {
                       >
                         <span>
                           {isSubmitting
-                            ? "시세 조회 중..."
-                            : "내차시세 조회하기"}
+                            ? "바이어 최고가 대조 중..."
+                            : "🔥 딜러 뒷마진 뺀 진짜 최고가 찔러보기"}
                         </span>
                       </button>
 
@@ -1276,15 +1273,15 @@ export default function ExportPlatformClient() {
                       <div className="kpro-consult-trust-strip">
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>폐차 · 국내매매 · 직수출 3대 경로 비교 (중간 브로커 수수료 0원)</span>
+                          <span><strong>[타사 견적 격파]</strong> 다른 데 3군데 먼저 알아보고 마지막에 오세요! 무조건 더 드립니다</span>
                         </div>
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>다른 곳 3군데 먼저 알아보시고 마지막에 부르셔도 무조건 더 맞춰드립니다</span>
+                          <span><strong>[10원 감가 시 유튜브 박제]</strong> 현장 와서 말 바꾸면 차 안 파셔도 됩니다</span>
                         </div>
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>고객 60% 이상이 병국이 얼굴만 믿고 차부터 편하게 보내주십니다 (도착 즉시 칼정산·선입금 모두 OK)</span>
+                          <span><strong>[60% 얼굴 믿고 선탁송]</strong> 돈 받기 전에 차부터 보내도 도착 즉시 100% 칼송금!</span>
                         </div>
                       </div>
                     </fieldset>
@@ -1308,23 +1305,23 @@ export default function ExportPlatformClient() {
               }}
             >
               <span style={{ color: "#1cdb83" }}>
-                왜 다른 곳보다 병국이한테 팔면 돈이 더 남을까요?
+                딜러가 &ldquo;이 차는 폐차밖에 안 돼요&rdquo;라고 했나요?
               </span>
               <br />
-              중간 브로커 3단계 거품을 빼고 해외 바이어와 직통 연결하기 때문입니다
+              속지 마세요! 그 딜러가 사장님 차 헐값에 사서 내일 수출단지에 되팔아먹습니다!
             </h2>
 
             <div className="kpro-vs-banner">
               <p className="kpro-vs-domestic">
-                일반 매매 · 알선 딜러
+                모르고 남한테 넘기면
                 <br />
-                <strong>3단계 수수료 + 현장 감가</strong>
+                <strong>고철값 뺏기고 딜러 배만 불림</strong>
               </p>
               <p className="kpro-vs-badge">vs</p>
               <p className="kpro-vs-export">
-                병국이 직수출
+                병국이한테 직통으로 오면
                 <br />
-                중간 브로커 0원 · 바이어 직통 웃돈
+                딜러 뒷마진 전액 내 통장으로!
               </p>
               <img
                 src="/images/kpro/calc.png"
@@ -1402,30 +1399,30 @@ export default function ExportPlatformClient() {
             <div className="kpro-graph-row">
               <div className="kpro-wrap-box kpro-graph-white-box">
                 <div className="kpro-graph-pill-tit">
-                  3단계 중간 유통 마진 완전 삭제
+                  딜러들이 절대 비밀로 하는 업계의 진실
                 </div>
                 <p className="kpro-graph-up-text">
-                  브로커 몫까지 <span>차주님께 100% 직통 지급</span>
+                  딜러가 챙기던 수출 뒷돈, <span>사장님 통장에 100% 직격!</span>
                 </p>
                 <p className="text-sub">
-                  알선 딜러·상사·하청 브로커가 떼어가던 수수료를 차주님께 전부 돌려드립니다.
+                  폐차장·매매상이 헐값에 사서 수출단지에 넘기며 해먹던 차익을 전부 사장님께 돌려드립니다.
                 </p>
 
                 <div className="kpro-graph-grid-stage">
                   <div className="kpro-graph-col">
-                    <p>(일반 폐차·알선)</p>
-                    <p style={{ fontSize: "0.95rem" }}>수수료·감가 차감</p>
+                    <p>(폐차장·일반딜러)</p>
+                    <p style={{ fontSize: "0.95rem" }}>호구 잡히는 고철가</p>
                     <div className="kpro-hei-bar is-gray" />
                   </div>
                   <div className="kpro-graph-col is-export">
-                    <p style={{ fontSize: "1.02rem" }}>바이어 직통 웃돈 100%</p>
+                    <p style={{ fontSize: "1.02rem" }}>딜러 뒷마진 + 바이어 웃돈 폭발!</p>
                     <div className="kpro-hei-bar is-gradient" />
                   </div>
                 </div>
 
                 <div className="kpro-graph-pri-row">
-                  <p>일반 알선·매매상</p>
-                  <p className="is-red">병국이 바이어 직통</p>
+                  <p>남 좋은 일 시키는 가격</p>
+                  <p className="is-red">병국이 타사 격파 최고가</p>
                 </div>
               </div>
 
@@ -1483,29 +1480,29 @@ export default function ExportPlatformClient() {
               </div>
 
               <div className="kpro-wrap-box kpro-graph-white-box">
-                <div className="kpro-graph-pill-tit">고객 60% 이상이 얼굴 믿고 먼저 보내주시는 곳</div>
+                <div className="kpro-graph-pill-tit">10원이라도 깎으면 그 자리에서 유튜브 접습니다</div>
                 <p className="kpro-graph-up-text">
-                  차부터 보내주셔도 <span>단 1원 감가 없는 칼정산!</span>
+                  손님 10명 중 6명은 <span>돈도 안 받고 차부터 보내십니다!</span>
                 </p>
                 <p className="text-sub">
-                  바쁘신 차주님 10분 중 6분 이상은 병국이 얼굴만 믿고 키만 넣어 차부터 편하게 보내주십니다.
+                  얼굴 다 까고 방송하는 놈이라 거짓말을 못 합니다. 키만 넣어 탁송부터 보내셔도 도착 즉시 칼송금!
                 </p>
 
                 <div className="kpro-graph-grid-stage">
                   <div className="kpro-graph-col">
-                    <p>(타사 허위 미끼)</p>
-                    <p style={{ fontSize: "0.95rem" }}>현장 억지 감가</p>
+                    <p>(양아치 미끼 딜러)</p>
+                    <p style={{ fontSize: "0.95rem" }}>현장 반토막 칼질</p>
                     <div className="kpro-hei-bar is-gray" />
                   </div>
                   <div className="kpro-graph-col is-export">
-                    <p style={{ fontSize: "1.02rem" }}>60% 얼굴 믿고 선탁송 · 칼정산</p>
+                    <p style={{ fontSize: "1.02rem" }}>60% 얼굴 믿고 선탁송 · 감가 0원!</p>
                     <div className="kpro-hei-bar is-gradient" />
                   </div>
                 </div>
 
                 <div className="kpro-graph-pri-row">
-                  <p>미끼 견적 업체</p>
-                  <p className="is-red">병국이 실명·얼굴 보증</p>
+                  <p>말 바꾸는 미끼 업체</p>
+                  <p className="is-red">유튜브 실명 박제 보증</p>
                 </div>
               </div>
             </div>
