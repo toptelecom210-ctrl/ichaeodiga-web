@@ -328,6 +328,39 @@
     transform: translateY(-1px);
   }
 
+
+  .main-nav a.header-sns-nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.36rem 0.78rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .main-nav a.header-sns-nav-pill.is-youtube {
+    background: #dc2626;
+    color: #ffffff;
+  }
+
+  .main-nav a.header-sns-nav-pill.is-instagram {
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 55%, #fcb045 100%);
+    color: #ffffff;
+  }
+
+  .main-nav a.header-sns-nav-pill.is-tiktok {
+    background: #0f172a;
+    color: #67e8f9;
+    border: 1px solid #00f2fe;
+  }
+
+  .main-nav a.header-sns-nav-pill.is-kakao {
+    background: #fee500;
+    color: #3c1e1e;
+  }
+
   .header-cta-group {
     display: flex;
     align-items: center;

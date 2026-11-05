@@ -266,6 +266,104 @@ export default function MobileAppClient() {
         <div className="m-phone-screen">
           {/* Mobile Sticky App Header */}
           <header className="m-header">
+            {/* 맨 윗줄: 유튜브 · 인스타 · 틱톡 · 카톡상담 순서 고정 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "0.32rem",
+                padding: "0.42rem 0.65rem",
+                background: "#060b16",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+              }}
+            >
+              <a
+                href={SITE_CONFIG.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.2rem",
+                  padding: "0.34rem 0.2rem",
+                  borderRadius: "999px",
+                  background: "#dc2626",
+                  color: "#ffffff",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span>▶ 유튜브</span>
+              </a>
+              <a
+                href={SITE_CONFIG.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.2rem",
+                  padding: "0.34rem 0.2rem",
+                  borderRadius: "999px",
+                  background:
+                    "linear-gradient(135deg, #833ab4 0%, #fd1d1d 55%, #fcb045 100%)",
+                  color: "#ffffff",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span>📸 인스타</span>
+              </a>
+              <a
+                href={SITE_CONFIG.tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.2rem",
+                  padding: "0.34rem 0.2rem",
+                  borderRadius: "999px",
+                  background: "#0f172a",
+                  border: "1px solid #00f2fe",
+                  color: "#67e8f9",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span>🎵 틱톡</span>
+              </a>
+              <a
+                href={SITE_CONFIG.kakaoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.2rem",
+                  padding: "0.34rem 0.2rem",
+                  borderRadius: "999px",
+                  background: "#fee500",
+                  color: "#3c1e1e",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                <span>💬 카톡상담</span>
+              </a>
+            </div>
             <div className="m-header-top">
               <Link href="/m" className="m-brand">
                 <span className="m-brand-badge">병국직영</span>
