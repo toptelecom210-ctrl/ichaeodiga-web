@@ -1367,14 +1367,18 @@ export default function ExportPlatformClient() {
                         <span>{slide.carName}</span>
                         <span className="year">{slide.year}</span>
                       </p>
-                      <p className="kpro-slide-price-row">
-                        <span>폐차·내수 감가</span>
-                        <span>{slide.domesticPrice}</span>
-                      </p>
-                      <p className="kpro-slide-price-row is-export">
-                        <span>병국이 바이어 직통</span>
-                        <span>{slide.exportPrice}</span>
-                      </p>
+                      <div className="kpro-slide-price-row">
+                        <strong className="kpro-story-tag is-bad">
+                          😢 타사 딜러·폐차장 설움 사연
+                        </strong>
+                        <p className="kpro-story-body">{slide.domesticPrice}</p>
+                      </div>
+                      <div className="kpro-slide-price-row is-export">
+                        <strong className="kpro-story-tag is-good">
+                          🔥 병국이가 타사보다 더 드린 이유
+                        </strong>
+                        <p className="kpro-story-body">{slide.exportPrice}</p>
+                      </div>
                     </div>
                     <div className="kpro-slide-bottom-banner">
                       💥 <span>{slide.diffNumber}</span>
@@ -2999,7 +3003,7 @@ export default function ExportPlatformClient() {
                       <div className="sns-preview-thumbs">
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_7.jpg?v=navyplate1"
+                            src="/images/kpro/car_4.jpg?v=navyplate1"
                             alt="틱톡 쇼츠 차량 1"
                             width={200}
                             height={125}
@@ -3118,7 +3122,7 @@ export default function ExportPlatformClient() {
                       <div className="sns-preview-thumbs">
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_9.jpg?v=navyplate1"
+                            src="/images/kpro/car_10.jpg?v=navyplate1"
                             alt="카톡 사진 견적 예시 1"
                             width={200}
                             height={125}

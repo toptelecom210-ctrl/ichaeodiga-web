@@ -3743,80 +3743,116 @@
   }
 
   .kpro-slide-card {
-    inline-size: 290px;
+    inline-size: 360px;
     flex-shrink: 0;
     background: #ffffff;
     color: var(--text-main);
-    border-radius: 15px;
+    border-radius: 16px;
     overflow: clip;
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
   .kpro-slide-thumb {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     background: #0f172a;
     overflow: clip;
   }
 
   .kpro-slide-price-wrap {
-    padding: 1rem 1.15rem;
+    padding: 1rem 1.1rem;
     background: #ffffff;
     display: flex;
     flex-direction: column;
-    gap: 0.42rem;
+    gap: 0.6rem;
+    flex: 1;
   }
 
   .kpro-slide-name-row {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    font-size: 1.15rem;
+    gap: 0.5rem;
+    font-size: 1.08rem;
     font-weight: 900;
-    color: #111827;
-    padding-block-end: 0.35rem;
-    border-block-end: 1px solid #e5e7eb;
+    color: #0f172a;
+    padding-block-end: 0.45rem;
+    border-block-end: 1.5px solid #e2e8f0;
   }
 
   .kpro-slide-name-row .year {
-    font-size: 0.86rem;
-    font-weight: 700;
-    color: #6b7280;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #057a44;
+    background: #ecfdf5;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
   }
 
   .kpro-slide-price-row {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: #4b5563;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.28rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 10px;
+    background: #f8fafc;
+    border-inline-start: 3.5px solid #ef4444;
+    text-align: left;
   }
 
   .kpro-slide-price-row.is-export {
-    color: #057a44;
+    background: #ecfdf5;
+    border-inline-start: 3.5px solid #057a44;
+  }
+
+  .kpro-story-tag {
+    font-size: 0.76rem;
     font-weight: 900;
-    font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .kpro-story-tag.is-bad {
+    color: #dc2626;
+  }
+
+  .kpro-story-tag.is-good {
+    color: #047857;
+  }
+
+  .kpro-story-body {
+    font-size: 0.83rem;
+    font-weight: 600;
+    line-height: 1.48;
+    color: #334155;
+    margin: 0;
+  }
+
+  .kpro-slide-price-row.is-export .kpro-story-body {
+    color: #064e3b;
+    font-weight: 700;
   }
 
   .kpro-slide-bottom-banner {
-    padding: 0.95rem 0.75rem;
+    padding: 0.8rem 0.9rem;
     text-align: center;
-    background: #00235b;
+    background: linear-gradient(90deg, #00235b 0%, #054a32 100%);
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 0.88rem;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.3;
   }
 
   .kpro-slide-bottom-banner span {
-    font-size: 1.75rem;
+    font-size: 0.92rem;
     font-weight: 900;
     color: #ffdf4b;
-    margin-inline: 0.2rem;
+    margin-inline: 0.15rem;
   }
 
   /* KPRO Section 2 (section.box_graph): Alternating 2-Column Rising Bar Graphs */
@@ -5084,7 +5120,7 @@
   }
 
   .m-comp-card {
-    inline-size: 195px;
+    inline-size: 270px;
     flex-shrink: 0;
     scroll-snap-align: start;
     border: 1px solid #cbd5e1;

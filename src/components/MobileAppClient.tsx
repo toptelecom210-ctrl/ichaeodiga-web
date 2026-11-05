@@ -855,13 +855,41 @@ export default function MobileAppClient() {
                             <strong>{slide.carName}</strong>
                             <span>{slide.year}</span>
                           </div>
-                          <div className="m-comp-row">
-                            <span>폐차·내수</span>
-                            <span>{slide.domesticPrice}</span>
+                          <div
+                            className="m-comp-row"
+                            style={{
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              gap: "0.2rem",
+                              background: "#f8fafc",
+                              padding: "0.45rem",
+                              borderRadius: "6px",
+                            }}
+                          >
+                            <span style={{ color: "#dc2626", fontWeight: 800 }}>
+                              😢 타사·폐차장 설움
+                            </span>
+                            <span style={{ fontSize: "0.74rem", lineHeight: 1.4 }}>
+                              {slide.domesticPrice}
+                            </span>
                           </div>
-                          <div className="m-comp-row is-export">
-                            <span>병국이직통</span>
-                            <strong>{slide.exportPrice}</strong>
+                          <div
+                            className="m-comp-row is-export"
+                            style={{
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              gap: "0.2rem",
+                              background: "#ecfdf5",
+                              padding: "0.45rem",
+                              borderRadius: "6px",
+                            }}
+                          >
+                            <span style={{ color: "#057a44", fontWeight: 900 }}>
+                              🔥 병국이가 더 드린 이유
+                            </span>
+                            <strong style={{ fontSize: "0.75rem", lineHeight: 1.4 }}>
+                              {slide.exportPrice}
+                            </strong>
                           </div>
                         </div>
                         <div className="m-comp-diff">
