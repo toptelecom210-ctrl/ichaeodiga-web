@@ -1314,19 +1314,19 @@ export const KPRO_HERO_SLIDES: KproHeroSlide[] = [
 
 export interface KproComparisonSlide {
   id: string;
-  diffMan?: number;
-  starBadge?: string;
-  starQuote?: string;
-  starType?: "seven" | "five" | "fourNine";
   carName: string;
-  diffNumber: string;
-  diffBadge: string;
   year: string;
-  fuel: string;
-  accident: string;
   domesticPrice: string;
   exportPrice: string;
+  diffNumber: string;
   imageUrl: string;
+  diffMan?: number;
+  diffBadge?: string;
+  fuel?: string;
+  accident?: string;
+  starType?: "seven" | "five" | "fourNine";
+  starBadge?: string;
+  starQuote?: string;
 }
 
 export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
