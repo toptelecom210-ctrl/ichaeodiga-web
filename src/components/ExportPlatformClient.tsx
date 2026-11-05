@@ -1367,21 +1367,6 @@ export default function ExportPlatformClient() {
                         <span>{slide.carName}</span>
                         <span className="year">{slide.year}</span>
                       </p>
-                      {slide.starBadge && (
-                        <div
-                          className={`kpro-star-rating-box ${
-                            slide.starType === "seven" ? "is-seven" : ""
-                          }`}
-                        >
-                          <div className="kpro-star-head">
-                            <span className="kpro-star-label">차주 체감 만족도</span>
-                            <strong className="kpro-star-score">{slide.starBadge}</strong>
-                          </div>
-                          {slide.starQuote && (
-                            <p className="kpro-star-quote">&ldquo;{slide.starQuote}&rdquo;</p>
-                          )}
-                        </div>
-                      )}
                       <div className="kpro-slide-price-row">
                         <strong className="kpro-story-tag is-bad">
                           😢 타사 딜러·폐차장 설움 사연
@@ -3436,9 +3421,11 @@ export default function ExportPlatformClient() {
                 차종별 해외 직수출 우대 매입 시세표
               </h2>
               <p className="section-desc">
+                <strong style={{ color: "#057a44" }}>
+                  📅 매일 2대씩 실제 직수출 매입 완료 차량이 상단에 자동 등록됩니다!
+                </strong>{" "}
                 아래 목록에 없는 차종(전 차종 국산·수입·특장·노후 트럭)도 모두 최고가
-                매입이 가능합니다. 차종 카드를 통해 <strong>옵션 시세계산기</strong> 또는{" "}
-                <strong>1분 견적창</strong>과 즉시 연동됩니다.
+                매입이 가능하며, 카드 클릭 시 즉시 상담창과 연동됩니다.
               </p>
             </div>
 
@@ -3469,7 +3456,30 @@ export default function ExportPlatformClient() {
             </div>
 
             <div className="vehicles-grid">
-              {filteredVehicles.map((item) => (
+              {(() => {
+                const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+                const daySeed = Math.floor(nowKst.getTime() / 86400000);
+                const len = filteredVehicles.length;
+                const shift = len > 0 ? (daySeed * 2) % len : 0;
+                const dailyRotatedVehicles =
+                  selectedCategory === "전체" && len > 2
+                    ? [...filteredVehicles.slice(shift), ...filteredVehicles.slice(0, shift)]
+                    : filteredVehicles;
+
+                return dailyRotatedVehicles.map((item, vIdx) => {
+                  const daysAgo = Math.floor(vIdx / 2);
+                  const slotInDay = (vIdx % 2) + 1;
+                  const d = new Date(nowKst.getTime() - daysAgo * 86400000);
+                  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+                  const dd = String(d.getUTCDate()).padStart(2, "0");
+                  const dailyPurchaseLabel =
+                    daysAgo === 0
+                      ? `🔥 오늘(${mm}.${dd}) ${slotInDay}호차 매입완료`
+                      : daysAgo === 1
+                        ? `✓ 어제(${mm}.${dd}) ${slotInDay}호차 매입완료`
+                        : `✓ ${mm}월 ${dd}일 (${slotInDay}호차 매입완료)`;
+
+                  return (
                 <article key={item.id} className="vehicle-card">
                   <img
                     className="vehicle-card-img"
@@ -3485,7 +3495,26 @@ export default function ExportPlatformClient() {
                       <span className="vehicle-category-tag">
                         {item.category}
                       </span>
-                      <span className="vehicle-badge">{item.badge}</span>
+                      <span
+                        className="vehicle-badge"
+                        style={
+                          vIdx < 2
+                            ? {
+                                background: "#dc2626",
+                                color: "#ffffff",
+                                borderColor: "#dc2626",
+                                fontWeight: 900,
+                              }
+                            : {
+                                background: "#ecfdf5",
+                                color: "#047857",
+                                borderColor: "#a7f3d0",
+                                fontWeight: 800,
+                              }
+                        }
+                      >
+                        {dailyPurchaseLabel}
+                      </span>
                     </div>
                     <h3 className="vehicle-name">{item.name}</h3>
                     <p className="vehicle-meta">
@@ -3505,16 +3534,6 @@ export default function ExportPlatformClient() {
                     </div>
 
                     <div className="vehicle-price-box">
-                      <div className="showroom-star-bar">
-                        <span className="showroom-star-title">차주 체감 만족도</span>
-                        <strong className="showroom-star-icons">
-                          {item.id.endsWith("1") || item.id.endsWith("3") || item.id.endsWith("6") || item.id.endsWith("8")
-                            ? "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개 돌파!)"
-                            : item.id.endsWith("4")
-                              ? "⭐⭐⭐⭐⭐ 4.9 / 5.0 (입금이 너무 빨라 0.1점 뺌ㅋㅋ)"
-                              : "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점 · 무감가 인증)"}
-                        </strong>
-                      </div>
                       <div className="showroom-story-block is-bad">
                         <span className="price-col-label">😢 타사·폐차장 설움 사연</span>
                         <span className="price-col-scrap">
@@ -3571,7 +3590,9 @@ export default function ExportPlatformClient() {
                     </div>
                   </footer>
                 </article>
-              ))}
+                  );
+                });
+              })()}
             </div>
           </div>
         </section>
@@ -3902,9 +3923,10 @@ export default function ExportPlatformClient() {
                 </span>
               </h2>
               <p className="section-desc">
-                폐차장이나 국내 매매상사에 넘기기 직전, 병국이와 직거래 상담 후
-                수백만 원의 추가 수익을 당일 현장에서 송금받으신 전국 차주님들의
-                실제 출장 매입 후기입니다.
+                <strong style={{ color: "#057a44" }}>
+                  📅 매일 2대씩 당일 매입 완료된 실제 차주님들의 후기와 체감 별점(5개 만점에 7개 돌파!)이 자동 업데이트됩니다.
+                </strong>{" "}
+                폐차장이나 국내 매매상사에 넘기기 직전 병국이와 직거래하신 전국 차주님들의 생생한 기록입니다.
               </p>
             </div>
 
@@ -3960,17 +3982,37 @@ export default function ExportPlatformClient() {
                         </strong>{" "}
                         · {rev.region} ({rev.yearAndMileage})
                       </span>
-                      <span className="text-muted">{rev.date}</span>
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          fontWeight: 900,
+                          color: rev.date.includes("오늘") ? "#dc2626" : "#057a44",
+                          background: rev.date.includes("오늘") ? "#fef2f2" : "#ecfdf5",
+                          padding: "0.18rem 0.55rem",
+                          borderRadius: "999px",
+                        }}
+                      >
+                        {rev.date}
+                      </span>
                     </div>
 
-                    <div className="review-star-pill-row">
-                      <span className="review-star-pill">
-                        {rev.id.endsWith("1") || rev.id.endsWith("3") || rev.id.endsWith("5") || rev.id.endsWith("7")
-                          ? "⭐⭐⭐⭐⭐⭐⭐ 차주 만족도: 별 5개 만점에 7개!"
-                          : rev.id.endsWith("4")
-                            ? "⭐⭐⭐⭐⭐ 4.9 / 5.0 (별 5개 중 4.9개)"
-                            : "⭐⭐⭐⭐⭐ 차주 만족도: 별 5개 중 5.0 만점"}
-                      </span>
+                    <div
+                      className={`kpro-star-rating-box ${
+                        rev.starType === "seven" ? "is-seven" : ""
+                      }`}
+                      style={{ marginTop: "0.55rem", marginBottom: "0.45rem" }}
+                    >
+                      <div className="kpro-star-head">
+                        <span className="kpro-star-label">
+                          {rev.starType === "seven" ? "만점 돌파 후기" : "차주 체감 만족도"}
+                        </span>
+                        <strong className="kpro-star-score">
+                          {rev.starBadge || "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)"}
+                        </strong>
+                      </div>
+                      {rev.starQuote && (
+                        <p className="kpro-star-quote">💬 &ldquo;{rev.starQuote}&rdquo;</p>
+                      )}
                     </div>
 
                     <h3 className="vehicle-name">&ldquo;{rev.title}&rdquo;</h3>

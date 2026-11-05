@@ -1,5 +1,8 @@
 export interface ReviewItem {
   id: string;
+  starType?: "seven" | "five" | "fourNine";
+  starBadge?: string;
+  starQuote?: string;
   customerName: string;
   region: string;
   carModel: string;
@@ -380,27 +383,74 @@ export const CUSTOMER_REVIEWS_100: ReviewItem[] = Array.from(
     const region =
       KOREAN_REGIONS[(index * 3 + cycle) % KOREAN_REGIONS.length];
 
-    const daysAgo = index * 7 + (index % 5);
-    const baseDate = new Date(Date.UTC(2026, 10, 4));
-    baseDate.setUTCDate(baseDate.getUTCDate() - daysAgo);
-    const yyyy = baseDate.getUTCFullYear();
-    const mm = String(baseDate.getUTCMonth() + 1).padStart(2, "0");
-    const dd = String(baseDate.getUTCDate()).padStart(2, "0");
-    const dateStr = `${yyyy}-${mm}-${dd}`;
+    // Daily 2 purchases per day (매일 2대씩 매입 기록 자동 갱신)
+    const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+    const daySeed = Math.floor(nowKst.getTime() / 86400000);
+    const rotatedIdx = (index + daySeed * 2) % 100;
+    const activeSeed = REVIEW_SEEDS[rotatedIdx % REVIEW_SEEDS.length];
+    const activeCycle = Math.floor(rotatedIdx / REVIEW_SEEDS.length);
 
-    const adjustedKm = seed.km + cycle * 14000 - (index % 3) * 6000;
+    const daysAgo = Math.floor(index / 2); // Exactly 2 cars per day!
+    const slotInDay = (index % 2) + 1; // 1호차 or 2호차
+    const targetDate = new Date(nowKst.getTime() - daysAgo * 86400000);
+    const yyyy = targetDate.getUTCFullYear();
+    const mm = String(targetDate.getUTCMonth() + 1).padStart(2, "0");
+    const dd = String(targetDate.getUTCDate()).padStart(2, "0");
+    const dateStr =
+      daysAgo === 0
+        ? `${yyyy}-${mm}-${dd} (오늘 ${slotInDay}호차 매입완료)`
+        : daysAgo === 1
+          ? `${yyyy}-${mm}-${dd} (어제 ${slotInDay}호차 매입완료)`
+          : `${yyyy}-${mm}-${dd} (일일 2대 · ${slotInDay}호차)`;
+
+    const adjustedKm = activeSeed.km + activeCycle * 14000 - (rotatedIdx % 3) * 6000;
+
+    const sevenStarQuotes = [
+      "별 5개밖에 못 누르는 게 아쉽네요! 폐차장 고철값 받을 뻔한 정든 내 차 살려줘서 저는 별 7개 드립니다!",
+      "유튜브 얼굴 믿고 돈 받기 전에 차부터 보냈는데 도착 1분 만에 칼입금! 별 5개 만점에 7개 드립니다!",
+      "현장에서 적재함·범퍼 기스 10원도 안 깎고 처음 약속 그대로 현찰 쏴주셔서 무조건 별 7개 줍니다!",
+      "다른 곳 3군데 먼저 알아보고 마지막에 전화했는데 진짜 제일 많이 쳐주시네요! 별 7개도 모자랍니다!",
+      "인감도 필요 없고 집 앞에서 10분 만에 송금·말소까지 끝! 너무 고마워서 별 5개 만점에 7개 찍습니다!",
+    ];
+
+    const fiveStarQuotes = [
+      "타사 견적 문자 보여드렸더니 딜러 뒷마진 빼고 그 자리에서 바로 위 금액으로 맞춰주셨습니다!",
+      "출발 전 확정가 그대로 현장에서 단 10원 감가 없이 정산해 주셔서 믿음이 확 갔습니다.",
+      "당일 오후에 바로 수출말소증까지 카톡으로 보내주셔서 자동차보험료 환급까지 완벽히 받았습니다!",
+    ];
+
+    const fourNineQuotes = [
+      "입금이 너무 빨라서 정들었던 내 차 작별 인사할 틈도 없이 탁송 기사님이 가져가셔서 0.1점 뺐습니다ㅋㅋ 최고!",
+      "진작 병국이님께 연락할 걸 다른 딜러들한테 감정 상하며 시간 낭비한 게 아까워서 0.1점 뺍니다ㅎㅎ 대만족!",
+    ];
+
+    const mod = rotatedIdx % 5;
+    const starType: "seven" | "five" | "fourNine" =
+      mod === 0 || mod === 1 || mod === 3 ? "seven" : mod === 4 ? "fourNine" : "five";
+    const starBadge =
+      starType === "seven"
+        ? "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개 돌파!)"
+        : starType === "fourNine"
+          ? "⭐⭐⭐⭐⭐ 4.9 / 5.0 (별 5개 중 4.9개)"
+          : "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)";
+    const starQuote =
+      starType === "seven"
+        ? sevenStarQuotes[rotatedIdx % sevenStarQuotes.length]
+        : starType === "fourNine"
+          ? fourNineQuotes[rotatedIdx % fourNineQuotes.length]
+          : fiveStarQuotes[rotatedIdx % fiveStarQuotes.length];
 
     const reviewOpeners = [
-      `폐차장이랑 매매상 딜러가 \${(adjustedKm / 10000).toFixed(1)}만km 넘은 \${seed.carModel} 보더니 '이건 고철값밖에 안 나와요'라며 후려치길래 속으로 진짜 열받았습니다. 알고 보니 그렇게 헐값에 사서 자기들이 수출단지에 되파는 거더군요.`,
+      `폐차장이랑 매매상 딜러가 ${(adjustedKm / 10000).toFixed(1)}만km 넘은 ${activeSeed.carModel} 보더니 '이건 고철값밖에 안 나와요'라며 후려치길래 속으로 진짜 열받았습니다. 알고 보니 그렇게 헐값에 사서 자기들이 수출단지에 되파는 거더군요.`,
       `다른 수출업체 3군데 먼저 찔러봤는데 전화로만 높게 부르고 사진 보내니까 슬슬 말 바꾸며 깎으려 하길래, 유튜브·인스타에 얼굴 다 까고 장사하는 '이차어디가' 병국이님께 마지막으로 전화했습니다.`,
       `솔직히 반신반의하면서 타사에서 받은 최고 견적 문자를 그대로 보여드렸는데, 병국이님이 '사장님, 딜러 뒷마진 빼고 바이어 웃돈 얹어서 제가 무조건 이겨드리겠습니다!' 하고 그 자리에서 바로 위 금액을 맞춰주셨습니다.`,
       `일하느라 바빠서 만날 시간도 없었는데, 손님 10명 중 6명은 병국이님 유튜브 얼굴 하나 믿고 돈 받기 전에 차키만 넣어서 탁송부터 보낸다길래 저도 얼굴 믿고 그냥 차부터 먼저 보냈습니다.`,
-      `국내 딜러들은 킬로수 많고 단순교환 있다고 똥차 취급하던 내 소중한 \${seed.carModel}였는데, 병국이님은 \${seed.country} 바이어가 제일 찾는 특A급 엔진이라며 숨은 옵션 웃돈까지 싹 다 찾아주셨습니다.`,
+      `국내 딜러들은 킬로수 많고 단순교환 있다고 찬밥 취급하던 내 소중한 ${activeSeed.carModel}였는데, 병국이님은 ${activeSeed.country} 바이어가 제일 찾는 특A급 엔진이라며 숨은 옵션 웃돈까지 싹 다 찾아주셨습니다.`,
     ];
 
     const reviewClosers = [
       `차를 먼저 보냈는데도 기스나 사고 트집 잡으며 10원 한 장 깎는 일 없이, 단지 도착하자마자 약속한 최고가 그대로 칼같이 통장에 꽂아주셨습니다! 역시 얼굴 걸고 방송하는 분은 클라스가 다릅니다!`,
-      `만약 모르고 동네 폐차장이나 딜러한테 넘겼으면 내 피 같은 돈 수백만 원이 고스란히 딜러 호주머니로 들어갈 뻔했습니다. 다른 데 다 알아보고 무조건 맨 마지막에 병국이님 부르세요!`,
+      `만약 모르고 동네 폐차장이나 딜러한테 넘겼으면 내 피 같은 돈이 고스란히 딜러 호주머니로 들어갈 뻔했습니다. 다른 데 다 알아보고 무조건 맨 마지막에 병국이님 부르세요!`,
       `인감증명서도 필요 없고 등록증·신분증 사진만 카톡으로 보냈는데 당일 수출말소증까지 바로 날아와서 보험료랑 세금 환급까지 싹 다 받았습니다. 주변 지인들 차 팔 때 무조건 병국이님만 추천합니다!`,
     ];
 
@@ -408,18 +458,21 @@ export const CUSTOMER_REVIEWS_100: ReviewItem[] = Array.from(
       id: `rev-${index + 1}`,
       customerName,
       region,
-      carModel: `${seed.year} ${seed.carModel}`,
-      yearAndMileage: `${seed.year} · ${adjustedKm.toLocaleString()}km`,
-      previousOffer: seed.sorrowStory,
-      finalExportPrice: seed.rebirthStory,
-      extraGain: seed.heartBadge,
-      rating: 5,
-      title: `[${region}] ${seed.highlight}`,
-      content: `${reviewOpeners[index % reviewOpeners.length]} ${reviewClosers[index % reviewClosers.length]}`,
-      tags: [seed.tag1, seed.tag2, `${seed.country}직수출`],
+      carModel: `${activeSeed.year} ${activeSeed.carModel}`,
+      yearAndMileage: `${activeSeed.year} · ${adjustedKm.toLocaleString()}km`,
+      previousOffer: activeSeed.prevOfferText || `${activeSeed.prevType} 헐값 감가`,
+      finalExportPrice: activeSeed.exportOfferText || `${activeSeed.country} 바이어 직통 최고가`,
+      extraGain: activeSeed.extraGainText || "타사 견적 완벽 격파 · 무감가 칼정산!",
+      rating: starType === "seven" ? 7 : 5,
+      starType,
+      starBadge,
+      starQuote,
+      title: `[${region}] ${activeSeed.highlight}`,
+      content: `${reviewOpeners[rotatedIdx % reviewOpeners.length]} ${reviewClosers[rotatedIdx % reviewClosers.length]}`,
+      tags: [activeSeed.tag1, activeSeed.tag2, `${activeSeed.country}직수출`],
       date: dateStr,
-      imageUrl: seed.imageUrl,
-      exportCountry: seed.country,
+      imageUrl: activeSeed.imageUrl,
+      exportCountry: activeSeed.country,
     };
   }
 );

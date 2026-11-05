@@ -855,42 +855,6 @@ export default function MobileAppClient() {
                             <strong>{slide.carName}</strong>
                             <span>{slide.year}</span>
                           </div>
-                          {slide.starBadge && (
-                            <div
-                              style={{
-                                background:
-                                  slide.starType === "seven"
-                                    ? "linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%)"
-                                    : "#f8fafc",
-                                border:
-                                  slide.starType === "seven"
-                                    ? "1px solid #f59e0b"
-                                    : "1px solid #cbd5e1",
-                                borderRadius: "6px",
-                                padding: "0.35rem 0.45rem",
-                                fontSize: "0.7rem",
-                                lineHeight: 1.35,
-                              }}
-                            >
-                              <div
-                                style={{
-                                  fontWeight: 900,
-                                  color: slide.starType === "seven" ? "#b45309" : "#0f172a",
-                                }}
-                              >
-                                {slide.starBadge}
-                              </div>
-                              {slide.starQuote && (
-                                <div
-                                  style={{
-                                    color: "#475569",
-                                    fontWeight: 700,
-                                    marginTop: "0.15rem",
-                                  }}
-                                >
-                                  &ldquo;{slide.starQuote}&rdquo;
-                                </div>
-                              )}
                             </div>
                           )}
                           <div
@@ -987,10 +951,48 @@ export default function MobileAppClient() {
                           loading="lazy"
                         />
                         <div className="m-vehicle-body">
-                          <span className="m-vehicle-badge">
+                          <span
+                            className="m-vehicle-badge"
+                            style={
+                              rev.date.includes("오늘")
+                                ? { background: "#dc2626", color: "#ffffff" }
+                                : undefined
+                            }
+                          >
                             {rev.date} · {rev.region}
                           </span>
                           <h3>{rev.carModel}</h3>
+                          <div
+                            style={{
+                              background:
+                                rev.starType === "seven"
+                                  ? "linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%)"
+                                  : "#f8fafc",
+                              border:
+                                rev.starType === "seven"
+                                  ? "1px solid #f59e0b"
+                                  : "1px solid #cbd5e1",
+                              borderRadius: "6px",
+                              padding: "0.3rem 0.45rem",
+                              marginTop: "0.2rem",
+                              marginBottom: "0.2rem",
+                              fontSize: "0.7rem",
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontWeight: 900,
+                                color: rev.starType === "seven" ? "#b45309" : "#0f172a",
+                              }}
+                            >
+                              {rev.starBadge || "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)"}
+                            </div>
+                            {rev.starQuote && (
+                              <div style={{ color: "#475569", fontWeight: 700, marginTop: "0.1rem" }}>
+                                💬 &ldquo;{rev.starQuote}&rdquo;
+                              </div>
+                            )}
+                          </div>
                           <p className="m-vehicle-years">{rev.title}</p>
                           <div
                             className="m-vehicle-prices"
@@ -1250,7 +1252,12 @@ export default function MobileAppClient() {
                         loading="lazy"
                       />
                       <div className="m-vehicle-body">
-                        <span className="m-vehicle-badge">{v.badge}</span>
+                        <span
+                          className="m-vehicle-badge"
+                          style={{ background: "#057a44", color: "#ffffff" }}
+                        >
+                          일일 2대 매입 · {v.badge}
+                        </span>
                         <h3>{v.name}</h3>
                         <p className="m-vehicle-years">{v.years}</p>
                         <div
