@@ -613,7 +613,7 @@ export default function ExportPlatformClient() {
       mileageBand,
       region,
       phone,
-      notes: `시세계산기 산출가 ${calculatedExportMinMan}~${calculatedExportMaxMan}만원 (우대옵션: ${
+      notes: `[3대 경로 비교 & 바이어 직통 진단] 타깃국: ${currentSimModel.targetCountry} (우대옵션: ${
         selectedOptLabels || "기본"
       })`,
     };
@@ -669,7 +669,7 @@ export default function ExportPlatformClient() {
             <span className="notice-badge">REAL FACE GUARANTEE</span>
             <span>
               유튜브·인스타·틱톡 얼굴 다 공개하고 일하는 <strong>병국(뺑국이)</strong> 실명 보증 ·
-              거짓 미끼견적 ZERO · <strong>얼굴 믿고 차부터 편하게 보내셔도 끝까지 책임지는 안심 거래</strong>
+              <strong>중간 브로커 수수료 0원</strong> · <strong>고객 60% 이상이 얼굴 믿고 차부터 보내주시는 안심 직거래</strong>
             </span>
           </div>
           <div className="top-sns-quick-row">
@@ -1276,15 +1276,15 @@ export default function ExportPlatformClient() {
                       <div className="kpro-consult-trust-strip">
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>헛걸음하게 만드는 거짓 미끼 견적은 애초에 부르지 않습니다</span>
+                          <span>폐차 · 국내매매 · 직수출 3대 경로 비교 (중간 브로커 수수료 0원)</span>
                         </div>
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>유튜브·인스타·틱톡 얼굴 공개 보증 · 현장 말 바꿈 ZERO</span>
+                          <span>다른 곳 3군데 먼저 알아보시고 마지막에 부르셔도 무조건 더 맞춰드립니다</span>
                         </div>
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>고객 60% 이상이 병국이 얼굴만 믿고 차부터 편하게 보내주시는 안심 거래</span>
+                          <span>고객 60% 이상이 병국이 얼굴만 믿고 차부터 편하게 보내주십니다 (도착 즉시 칼정산·선입금 모두 OK)</span>
                         </div>
                       </div>
                     </fieldset>
@@ -1308,27 +1308,27 @@ export default function ExportPlatformClient() {
               }}
             >
               <span style={{ color: "#1cdb83" }}>
-                &ldquo;무조건 시세보다 더 준다&rdquo;는 거짓 광고에 속지 마세요!
+                왜 다른 곳보다 병국이한테 팔면 돈이 더 남을까요?
               </span>
               <br />
-              얼굴 걸고 지킬 수 있는 진짜 수출가만 말씀드립니다
+              중간 브로커 3단계 거품을 빼고 해외 바이어와 직통 연결하기 때문입니다
             </h2>
 
             <div className="kpro-vs-banner">
               <p className="kpro-vs-domestic">
-                익명 브로커 허위견적
+                일반 매매 · 알선 딜러
                 <br />
-                <strong>현장 말바꿈·감가</strong>
+                <strong>3단계 수수료 + 현장 감가</strong>
               </p>
               <p className="kpro-vs-badge">vs</p>
               <p className="kpro-vs-export">
-                병국이 얼굴 실명보증
+                병국이 직수출
                 <br />
-                약속금액 그대로!
+                중간 브로커 0원 · 바이어 직통 웃돈
               </p>
               <img
                 src="/images/kpro/calc.png"
-                alt="수출 시세 계산기"
+                alt="수출 가치 비교"
                 className="kpro-vs-calc-float"
                 width={120}
                 height={132}
@@ -1371,16 +1371,16 @@ export default function ExportPlatformClient() {
                         <span className="year">{slide.year}</span>
                       </p>
                       <p className="kpro-slide-price-row">
-                        <span>국내에서의 설움</span>
+                        <span>폐차·내수 감가</span>
                         <span>{slide.domesticPrice}</span>
                       </p>
                       <p className="kpro-slide-price-row is-export">
-                        <span>바다 건너 새출발</span>
+                        <span>병국이 바이어 직통</span>
                         <span>{slide.exportPrice}</span>
                       </p>
                     </div>
                     <div className="kpro-slide-bottom-banner">
-                      <span>{slide.diffNumber}</span>
+                      💥 <span>{slide.diffNumber}</span>
                     </div>
                   </article>
                 )
@@ -1402,30 +1402,30 @@ export default function ExportPlatformClient() {
             <div className="kpro-graph-row">
               <div className="kpro-wrap-box kpro-graph-white-box">
                 <div className="kpro-graph-pill-tit">
-                  숫자로 낚지 않는 투명한 가치 산정
+                  3단계 중간 유통 마진 완전 삭제
                 </div>
                 <p className="kpro-graph-up-text">
-                  거품 없는 <span>진짜 바이어 실매입가</span>
+                  브로커 몫까지 <span>차주님께 100% 직통 지급</span>
                 </p>
                 <p className="text-sub">
-                  주행거리가 많다는 이유로 현장에서 말을 바꾸지 않습니다.
+                  알선 딜러·상사·하청 브로커가 떼어가던 수수료를 차주님께 전부 돌려드립니다.
                 </p>
 
                 <div className="kpro-graph-grid-stage">
                   <div className="kpro-graph-col">
-                    <p>(익명 미끼업체)</p>
-                    <p>현장 말바꿈·감가</p>
+                    <p>(일반 폐차·알선)</p>
+                    <p style={{ fontSize: "0.95rem" }}>수수료·감가 차감</p>
                     <div className="kpro-hei-bar is-gray" />
                   </div>
                   <div className="kpro-graph-col is-export">
-                    <p>약속금액 100%</p>
+                    <p style={{ fontSize: "1.02rem" }}>바이어 직통 웃돈 100%</p>
                     <div className="kpro-hei-bar is-gradient" />
                   </div>
                 </div>
 
                 <div className="kpro-graph-pri-row">
-                  <p>얼굴 숨긴 허위견적</p>
-                  <p className="is-red">병국이 실명보증 정직가</p>
+                  <p>일반 알선·매매상</p>
+                  <p className="is-red">병국이 바이어 직통</p>
                 </div>
               </div>
 
@@ -1483,29 +1483,29 @@ export default function ExportPlatformClient() {
               </div>
 
               <div className="kpro-wrap-box kpro-graph-white-box">
-                <div className="kpro-graph-pill-tit">사람 대 사람으로 정직한 약속</div>
+                <div className="kpro-graph-pill-tit">고객 60% 이상이 얼굴 믿고 먼저 보내주시는 곳</div>
                 <p className="kpro-graph-up-text">
-                  현장 억지 감가 <span>절대 0원 보증!</span>
+                  차부터 보내주셔도 <span>단 1원 감가 없는 칼정산!</span>
                 </p>
                 <p className="text-sub">
-                  처음 건넨 말 한마디가 끝날 때까지 바뀌지 않습니다.
+                  바쁘신 차주님 10분 중 6분 이상은 병국이 얼굴만 믿고 키만 넣어 차부터 편하게 보내주십니다.
                 </p>
 
                 <div className="kpro-graph-grid-stage">
                   <div className="kpro-graph-col">
-                    <p>(일반 알선브로커)</p>
-                    <p>트집 감가 불안</p>
+                    <p>(타사 허위 미끼)</p>
+                    <p style={{ fontSize: "0.95rem" }}>현장 억지 감가</p>
                     <div className="kpro-hei-bar is-gray" />
                   </div>
                   <div className="kpro-graph-col is-export">
-                    <p>차부터 보내도 안심</p>
+                    <p style={{ fontSize: "1.02rem" }}>60% 얼굴 믿고 선탁송 · 칼정산</p>
                     <div className="kpro-hei-bar is-gradient" />
                   </div>
                 </div>
 
                 <div className="kpro-graph-pri-row">
-                  <p>말 바꾸는 낚시견적</p>
-                  <p className="is-red">얼굴 믿고 맡기는 직거래</p>
+                  <p>미끼 견적 업체</p>
+                  <p className="is-red">병국이 실명·얼굴 보증</p>
                 </div>
               </div>
             </div>
@@ -1734,7 +1734,7 @@ export default function ExportPlatformClient() {
                 </button>
               </div>
               <img
-                src="/images/kpro/ban_2_car.png?v=sleek5"
+                src="/images/kpro/ban_2_car.png?v=navyplate1"
                 alt="수출 차량 이미지"
                 width={420}
                 height={190}
@@ -1760,8 +1760,8 @@ export default function ExportPlatformClient() {
               </h2>
               <p className="section-desc">
                 같은 차종이라도 수출되는 국가(리비아·키르기스스탄·요르단·가나·이집트·중남미)에 따라{" "}
-                <strong>시세가 100만~300만 원 이상 차이</strong>납니다. 이차어디가(병국이수출)는
-                국가별 현지 직영 바이어에게 다이렉트로 배정하여 최고가를 받아드립니다.
+                <strong>바이어가 우대하는 옵션과 엔진 기준이 완전히 달라집니다</strong>. 이차어디가(병국이수출)는
+                중간 알선 브로커 없이 국가별 현지 바이어에게 직통으로 배정하여 가장 높은 대우를 받아드립니다.
               </p>
             </div>
 
@@ -1868,8 +1868,8 @@ export default function ExportPlatformClient() {
               </h2>
               <p className="section-desc" style={{ color: "#cbd5e1" }}>
                 이름도 얼굴도 숨긴 채 터무니없는 금액으로 유인한 뒤 현장에서 상처 주는 악덕
-                브로커들과 다릅니다. <strong>실제로 차주님 10분 중 6분 이상은 유튜브·SNS 속 병국이 얼굴만 믿고 그냥 차부터 편하게 보내주십니다.</strong>{" "}
-                그 큰 믿음에 보답하기 위해 처음 약속한 금액 그대로 투명하게 당일 정산해 드립니다.
+                브로커들과 다릅니다. <strong>실제 고객님의 60% 이상이 유튜브 속 병국이 얼굴만 믿고 차부터 편하게 보내주실 만큼</strong>{" "}
+                투명하게 일하며, 단지 도착 즉시 칼정산은 물론 원하시면 현장 선입금도 100% 맞춰드립니다.
               </p>
             </div>
 
@@ -1950,7 +1950,7 @@ export default function ExportPlatformClient() {
                   </div>
                   <div className="live-incoming-right">
                     <span className="live-incoming-quote">
-                      {incoming.domesticQuote} →{" "}
+                      기존 {incoming.domesticQuote} →{" "}
                       <strong>{incoming.exportPrice}</strong>
                     </span>
                     <span className="live-incoming-up">{incoming.bonusDiff}</span>
@@ -2016,7 +2016,7 @@ export default function ExportPlatformClient() {
                     <div className="ticker-price-compare">
                       <div>
                         <span className="text-muted">
-                          {item.domesticQuote} →{" "}
+                          기존 {item.domesticQuote} →{" "}
                         </span>
                         <strong className="text-primary">
                           {item.exportPrice}
@@ -2065,18 +2065,18 @@ export default function ExportPlatformClient() {
           <div className="container">
             <div className="section-header">
               <span className="section-eyebrow">
-                INTERACTIVE EXPORT PRICE SIMULATOR
+                PICKPLUS-STYLE 3-ROUTE VALUE DIAGNOSIS
               </span>
               <h2 className="section-title">
-                내 차 팔면 얼마?{" "}
+                허위 미끼 숫자 대신 팩트로 비교하는{" "}
                 <span className="text-primary">
-                  실시간 중고차수출 시세조회 계산기
+                  내 차 3대 경로(폐차·내수·직수출) 가치 진단기
                 </span>
               </h2>
               <p className="section-desc">
-                국산·수입 제조사와 차종, 세부 연식, 바이어 우대 옵션을 선택하시면 일반 폐차
-                고철가 대비 <strong>이차어디가 해외 직수출 예상 매입가</strong>가 즉시
-                산출됩니다.
+                누구나 다 똑같이 찍혀 나오는 가짜 미끼 가격표에 속지 마세요. 내 차종과 옵션을 선택하시면{" "}
+                <strong>왜 국내 폐차·매매상에서는 깎이는지, 해외 어느 나라 바이어가 왜 웃돈을 주는지</strong>{" "}
+                즉시 확인하실 수 있습니다.
               </p>
             </div>
 
@@ -2217,7 +2217,7 @@ export default function ExportPlatformClient() {
                   <div className="sim-step-title">
                     <span className="sim-step-num">5</span>
                     <span>
-                      해외 바이어 추가 가산금 옵션 선택 (체크 시 실시간 합산)
+                      해외 바이어가 웃돈 주는 내 차 옵션 체크 (국내 폐차·매매 시 0원 취급 항목)
                     </span>
                   </div>
                   <div className="sim-options-grid">
@@ -2232,7 +2232,7 @@ export default function ExportPlatformClient() {
                           />
                           <span>{opt.label}</span>
                         </span>
-                        <span className="text-primary fw-800">
+                        <span className="text-primary fw-800" style={{ fontSize: "0.78rem" }}>
                           {opt.desc}
                         </span>
                       </label>
@@ -2241,16 +2241,16 @@ export default function ExportPlatformClient() {
                 </div>
               </div>
 
-              {/* Right Column: Live Story & Value Diagnosis + 1-Step Request */}
+              {/* Right Column: 3-Route Fact Diagnosis & Story Result */}
               <div className="simulator-result-card">
                 <div>
                   <div className="sim-valuation-header">
                     <span className="sim-valuation-badge">
                       <Calculator size={13} aria-hidden="true" />
-                      <span>REAL VALUE STORY</span>
+                      <span>3대 경로 팩트 진단서</span>
                     </span>
                     <span className="sim-valuation-country">
-                      새 출발 국가: {currentSimModel.targetCountry}
+                      직통 수출국: {currentSimModel.targetCountry}
                     </span>
                   </div>
 
@@ -2267,66 +2267,65 @@ export default function ExportPlatformClient() {
                     {currentSimModel.modelName}
                   </h3>
                   <p className="sim-valuation-trim">
-                    선택 트림: {simSubGen} · 바이어 우대 옵션{" "}
+                    선택 연식: {simSubGen} · 우대 옵션{" "}
                     <strong className="text-gold">
                       {simSelectedOptions.length}개 항목
                     </strong>{" "}
-                    최우선 반영됨
+                    바이어 직통 반영
                   </p>
 
                   <div
                     className="sim-valuation-grid"
-                    style={{ gridTemplateColumns: "1fr", gap: "0.75rem" }}
+                    style={{ gridTemplateColumns: "1fr", gap: "0.65rem" }}
                   >
                     <div
                       style={{
-                        background: "rgba(255,255,255,0.06)",
-                        padding: "0.85rem 1rem",
+                        background: "rgba(15, 23, 42, 0.55)",
+                        padding: "0.75rem",
                         borderRadius: "10px",
+                        border: "1px solid rgba(255,255,255,0.12)",
                       }}
                     >
-                      <span className="price-col-label">
-                        💔 [{currentSimModel.modelName}] 국내에서의 추억과 설움
+                      <span className="price-col-label" style={{ color: "#fca5a5" }}>
+                        ❌ 1·2경로 (폐차장 · 국내 매매상) 진행 시 손해 이유
                       </span>
-                      <span
+                      <p
                         style={{
-                          display: "block",
-                          color: "#cbd5e1",
-                          fontSize: "0.9rem",
+                          fontSize: "0.84rem",
+                          color: "#e2e8f0",
                           lineHeight: 1.5,
                           marginTop: "0.25rem",
                         }}
                       >
                         {currentSimModel.memoryStory}
-                      </span>
+                      </p>
                     </div>
                     <div
                       style={{
-                        background: "rgba(28, 219, 131, 0.12)",
-                        border: "1px solid rgba(28, 219, 131, 0.35)",
-                        padding: "0.85rem 1rem",
+                        background: "rgba(5, 122, 68, 0.22)",
+                        padding: "0.75rem",
                         borderRadius: "10px",
+                        border: "1px solid rgba(28, 219, 131, 0.4)",
                       }}
                     >
                       <span className="price-col-label text-gold">
-                        🌍 바다 건너 [{currentSimModel.targetCountry}]에서의 새 인생
+                        ⭕ 3경로 (병국이 해외 바이어 직통) 웃돈 받는 이유
                       </span>
-                      <span
+                      <p
                         style={{
-                          display: "block",
+                          fontSize: "0.85rem",
                           color: "#ffffff",
-                          fontSize: "0.92rem",
                           fontWeight: 700,
                           lineHeight: 1.5,
                           marginTop: "0.25rem",
                         }}
                       >
                         {currentSimModel.overseasStory}
-                      </span>
+                      </p>
                     </div>
                     <div className="sim-valuation-profit">
                       <TrendingUp size={16} aria-hidden="true" />
-                      <span>{currentSimModel.heartPromise}</span>
+                      <span>💥 {currentSimModel.heartPromise}</span>
                     </div>
                   </div>
                 </div>
@@ -2336,8 +2335,7 @@ export default function ExportPlatformClient() {
                   <div className="sim-sms-title">
                     <Send size={15} className="text-primary" aria-hidden="true" />
                     <span>
-                      산출된 [{currentSimModel.modelName}] 오늘 바이어 최고가 확정
-                      견적 받기
+                      [{currentSimModel.modelName}] 중간 수수료 0원 · 오늘 바이어 직통 견적 받기
                     </span>
                   </div>
                   <div className="form-group">
@@ -2356,7 +2354,7 @@ export default function ExportPlatformClient() {
                     />
                   </div>
                   <button type="submit" className="btn-submit-quote">
-                    <span>계산된 시세표 + 최고가 확정 견적 즉시 받기</span>
+                    <span>내 차 바이어 직통 최고가 견적 즉시 확인</span>
                     <ArrowRight size={18} aria-hidden="true" />
                   </button>
                 </form>
@@ -2781,7 +2779,7 @@ export default function ExportPlatformClient() {
                         </div>
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_1.jpg?v=sleek5"
+                            src="/images/kpro/car_1.jpg?v=navyplate1"
                             alt="유튜브 수출 차량"
                             width={200}
                             height={125}
@@ -2894,7 +2892,7 @@ export default function ExportPlatformClient() {
                       <div className="sns-preview-thumbs">
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_6.jpg?v=sleek5"
+                            src="/images/kpro/car_6.jpg?v=navyplate1"
                             alt="인스타그램 입고 피드 1"
                             width={200}
                             height={125}
@@ -2906,7 +2904,7 @@ export default function ExportPlatformClient() {
                         </div>
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_12.jpg?v=sleek5"
+                            src="/images/kpro/car_12.jpg?v=navyplate1"
                             alt="인스타그램 입고 피드 2"
                             width={200}
                             height={125}
@@ -3004,7 +3002,7 @@ export default function ExportPlatformClient() {
                       <div className="sns-preview-thumbs">
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_7.jpg?v=sleek5"
+                            src="/images/kpro/car_7.jpg?v=navyplate1"
                             alt="틱톡 쇼츠 차량 1"
                             width={200}
                             height={125}
@@ -3016,7 +3014,7 @@ export default function ExportPlatformClient() {
                         </div>
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_15.jpg?v=sleek5"
+                            src="/images/kpro/car_15.jpg?v=navyplate1"
                             alt="틱톡 쇼츠 차량 2"
                             width={200}
                             height={125}
@@ -3123,7 +3121,7 @@ export default function ExportPlatformClient() {
                       <div className="sns-preview-thumbs">
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_9.jpg?v=sleek5"
+                            src="/images/kpro/car_9.jpg?v=navyplate1"
                             alt="카톡 사진 견적 예시 1"
                             width={200}
                             height={125}
@@ -3135,7 +3133,7 @@ export default function ExportPlatformClient() {
                         </div>
                         <div className="sns-preview-thumb-item">
                           <img
-                            src="/images/kpro/car_19.jpg?v=sleek5"
+                            src="/images/kpro/car_19.jpg?v=navyplate1"
                             alt="카톡 사진 견적 예시 2"
                             width={200}
                             height={125}
@@ -3331,9 +3329,9 @@ export default function ExportPlatformClient() {
                 <strong>중고차 직수출</strong>은 연식이 오래되었거나 주행거리가{" "}
                 <strong>20만~50만km 이상</strong>인 차량, 사고 이력·외관 흠집이 있는
                 국산 승용차·SUV·화물차(포터2·봉고3)·수입차를 해외 현지 바이어에게 직접
-                매각하는 방식입니다. 고철 무게로만 정산하는 일반 폐차나 감가가 심한 국내
-                매매상사 대비 <strong>평균 150만 원~500만 원 이상 높은 매입 대금</strong>을
-                인감증명서 없이 당일 현장에서 100% 현금으로 지급받을 수 있습니다.
+                매각하는 방식입니다. 고철 무게로만 정산하는 일반 폐차나 3단계 알선 수수료를 떼는 국내
+                매매상사 대신 <strong>해외 30개국 현지 바이어와 직통으로 매칭하여 차종·옵션 가치를 100% 인정</strong>받으며,
+                인감증명서 없이 당일 즉시 계좌로 정산받을 수 있습니다.
               </p>
 
               <dl className="aeo-dl-grid">
@@ -3354,8 +3352,8 @@ export default function ExportPlatformClient() {
                 <div className="aeo-dl-item">
                   <dt>3. 구비서류 및 진행 시간</dt>
                   <dd>
-                    개인 기준 【자동차등록증 원본 + 신분증 사진 + 통장 사본】 3가지로 무방문
-                    진행, 현장 검수 10분 내 100% 즉시 계좌 송금
+                    개인 기준 【자동차등록증 원본 + 신분증 사진】만으로 무방문 진행! 고객 60% 이상이
+                    병국이 얼굴만 믿고 차부터 편하게 보내주시며 단지 도착 즉시 칼정산 (현장 선입금도 가능)
                   </dd>
                 </div>
                 <div className="aeo-dl-item">
@@ -3492,75 +3490,34 @@ export default function ExportPlatformClient() {
 
                     <div
                       className="vehicle-price-box"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "0.65rem",
-                      }}
+                      style={{ gridTemplateColumns: "1fr", gap: "0.45rem" }}
                     >
-                      <div
-                        style={{
-                          background: "#f8fafc",
-                          padding: "0.7rem 0.85rem",
-                          borderRadius: "8px",
-                          borderLeft: "3px solid #94a3b8",
-                        }}
-                      >
+                      <div>
+                        <span className="price-col-label">❌ 폐차·내수 진행 시 손해</span>
                         <span
-                          className="price-col-label"
-                          style={{ color: "#475569", fontWeight: 800 }}
-                        >
-                          💔 국내에서의 설움과 추억
-                        </span>
-                        <span
+                          className="price-col-scrap"
                           style={{
-                            display: "block",
-                            fontSize: "0.86rem",
-                            color: "#334155",
-                            lineHeight: 1.5,
-                            marginTop: "0.2rem",
                             textDecoration: "none",
+                            fontSize: "0.84rem",
+                            color: "#64748b",
                           }}
                         >
                           {item.scrapPriceRange}
                         </span>
                       </div>
-                      <div
-                        style={{
-                          background: "#ecfdf5",
-                          padding: "0.7rem 0.85rem",
-                          borderRadius: "8px",
-                          borderLeft: "3px solid #057a44",
-                        }}
-                      >
-                        <span
-                          className="price-col-label"
-                          style={{ color: "#057a44", fontWeight: 900 }}
-                        >
-                          🌍 바다 건너 제2의 인생 ({item.exportCountries})
+                      <div>
+                        <span className="price-col-label">
+                          ⭕ 병국이 바이어 직통 우대
                         </span>
                         <span
-                          style={{
-                            display: "block",
-                            fontSize: "0.88rem",
-                            color: "#064e3b",
-                            fontWeight: 700,
-                            lineHeight: 1.5,
-                            marginTop: "0.2rem",
-                          }}
+                          className="price-col-export"
+                          style={{ fontSize: "0.9rem" }}
                         >
                           {item.exportPriceRange}
                         </span>
                       </div>
-                      <div
-                        className="vehicle-profit-banner"
-                        style={{
-                          fontSize: "0.85rem",
-                          lineHeight: 1.4,
-                          padding: "0.55rem 0.75rem",
-                        }}
-                      >
-                        ✨ {item.maxExtraProfit}
+                      <div className="vehicle-profit-banner">
+                        💥 {item.maxExtraProfit}
                       </div>
                     </div>
 
@@ -3881,11 +3838,9 @@ export default function ExportPlatformClient() {
 
               <div className="process-step-card">
                 <span className="step-number-badge">03</span>
-                <h3 className="step-title">얼굴 믿고 맡기는 투명한 당일 정산</h3>
+                <h3 className="step-title">얼굴 믿고 선탁송(60%+) 또는 현장 송금</h3>
                 <p className="step-desc">
-                  현장 송금은 물론, 차주님 60% 이상이 병국이 얼굴만 믿고 차부터 편하게
-                  보내주십니다. 보내주신 믿음 그대로 단 1원의 억지 감가 없이 당일 깔끔하게
-                  정산해 드립니다.
+                  바쁘신 고객님의 60% 이상은 유튜브 속 병국이 얼굴만 믿고 키만 넣어 차부터 편하게 보내주십니다. 단지 도착 즉시 칼정산은 물론 원하시면 인수 전 선입금도 100% 맞춰드립니다.
                 </p>
               </div>
 
@@ -4006,16 +3961,22 @@ export default function ExportPlatformClient() {
                       style={{
                         flexDirection: "column",
                         alignItems: "flex-start",
-                        gap: "0.4rem",
+                        gap: "0.35rem",
                       }}
                     >
-                      <div style={{ fontSize: "0.84rem", color: "#64748b", lineHeight: 1.45 }}>
-                        💔 <span>{rev.previousOffer}</span>
+                      <div style={{ fontSize: "0.82rem", color: "#64748b" }}>
+                        ❌ {rev.previousOffer}
                       </div>
-                      <div style={{ fontSize: "0.88rem", lineHeight: 1.45 }}>
-                        🌍 <strong className="text-primary">{rev.finalExportPrice}</strong>
+                      <div
+                        style={{
+                          fontSize: "0.88rem",
+                          fontWeight: 800,
+                          color: "#057a44",
+                        }}
+                      >
+                        ⭕ {rev.finalExportPrice}
                       </div>
-                      <span className="ticker-bonus-pill">✨ {rev.extraGain}</span>
+                      <span className="ticker-bonus-pill">💥 {rev.extraGain}</span>
                     </div>
 
                     <div className="ticker-header-row">
@@ -4150,18 +4111,18 @@ export default function ExportPlatformClient() {
                     <span>DIRECT VALUATION CONCIERGE #{cycleNum}</span>
                   </span>
                   <h2 className="section-title text-white">
-                    정든 내 차, 고철이 아닌 가치 있는 새 출발을 선물하세요
+                    아직 내 차의 해외 바이어 최고가를 확인하지 않으셨나요?
                   </h2>
                   <p className="section-desc">
                     지금 보고 계신{" "}
                     <strong className="text-gold">
                       {spotlightVehicle.name}
                     </strong>{" "}
-                    차종은 —{" "}
+                    차종은{" "}
                     <strong className="text-gold">
                       {spotlightVehicle.maxExtraProfit}
-                    </strong>
-                    . 아래에서 차종과 연락처만 남겨주시면 병국이가 직접 정직하게 안내해 드립니다.
+                    </strong>{" "}
+                    혜택으로 진행됩니다. 아래에서 차종과 연락처만 입력해 즉시 확인하세요.
                   </p>
                 </div>
 

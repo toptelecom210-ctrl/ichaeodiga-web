@@ -164,8 +164,8 @@ export default function MobileAppClient() {
           mileageBand: "현장/전화확인",
           region,
           phone: fullPhone,
-          notes: "[모바일 전용버전(/m) 10초 무료상담 접수]",
-          estimatedExportPrice: `${simExportMin}만 ~ ${simExportMax}만 원`,
+          notes: "[모바일 전용버전(/m) 10초 무료상담 접수 · 3대 경로 비교]",
+          estimatedExportPrice: `${currentSimModel.targetCountry} 바이어 직통 우대`,
         }),
       });
       const data = await res.json();
@@ -357,19 +357,19 @@ export default function MobileAppClient() {
 
                     <div className="m-hero-copy">
                       <h1 className="m-hero-title">
-                        거짓 미끼견적에 속지 마세요!
+                        중간 브로커 수수료 0원!
                         <br />
                         <span className="m-text-emerald">
-                          얼굴 걸고 지키는 진짜 수출가
+                          폐차·내수보다 돈이 더 남는 직수출
                         </span>
                       </h1>
                       <p className="m-hero-desc">
-                        달콤한 거짓말로 부른 뒤 현장에서 상처 주지 않습니다. <strong>고객 60% 이상이 유튜브·SNS 속 병국이 얼굴만 믿고 그냥 차부터 편하게 보내주시는</strong> 검증된 안심 거래를 약속합니다.
+                        일반 딜러 3단계 수수료를 없애고 해외 바이어와 직통 연결합니다. <strong>고객 60% 이상이 유튜브 속 병국이 얼굴만 믿고 차부터 편하게 보내주시는</strong> 100% 무감가 직영 센터입니다.
                       </p>
                       <div className="m-hero-badges">
-                        <span>✓ 얼굴·실명 보증</span>
-                        <span>✓ 거짓견적 ZERO</span>
-                        <span>✓ 현장 말바꿈 0원</span>
+                        <span>✓ 브로커 수수료 0원</span>
+                        <span>✓ 60% 얼굴믿고 선탁송</span>
+                        <span>✓ 현장 억지감가 ZERO</span>
                       </div>
                     </div>
                   </div>
@@ -767,7 +767,7 @@ export default function MobileAppClient() {
                             {topIncoming.carModel} ({topIncoming.year})
                           </span>
                           <span style={{ color: "#ffdf4b" }}>
-                            수출 {topIncoming.exportPrice} (
+                            {topIncoming.exportPrice} (
                             {topIncoming.bonusDiff})
                           </span>
                         </div>
@@ -820,7 +820,7 @@ export default function MobileAppClient() {
                             <span>
                               기존 {item.domesticQuote} ({item.status})
                             </span>
-                            <strong>→ 수출확정 {item.exportPrice}</strong>
+                            <strong>→ {item.exportPrice}</strong>
                           </div>
                         </button>
                       );
@@ -831,10 +831,10 @@ export default function MobileAppClient() {
                 {/* Mobile Swipeable Real Comparison Cards (KPRO 14 Cars) */}
                 <section className="m-section-card">
                   <div className="m-sec-head">
-                    <h2>거짓 없는 100% 실거래! 내수 vs 직수출 실제 비교</h2>
+                    <h2>폐차·내수 vs 병국이 바이어 직통 3대 경로 비교</h2>
                   </div>
                   <p className="m-sec-sub">
-                    과장된 미끼 숫자가 아닌, 해외 바이어와 실제 거래된 정직한 데이터입니다.
+                    과장된 미끼 숫자가 아닌, 왜 해외 바이어 직거래가 돈이 더 남는지 팩트로 비교하세요.
                   </p>
                   <div className="m-hscroll-cards">
                     {KPRO_COMPARISON_SLIDES.slice(0, 8).map((slide) => (
@@ -856,16 +856,16 @@ export default function MobileAppClient() {
                             <span>{slide.year}</span>
                           </div>
                           <div className="m-comp-row">
-                            <span>국내 설움</span>
+                            <span>폐차·내수</span>
                             <span>{slide.domesticPrice}</span>
                           </div>
                           <div className="m-comp-row is-export">
-                            <span>새 출발</span>
+                            <span>병국이직통</span>
                             <strong>{slide.exportPrice}</strong>
                           </div>
                         </div>
                         <div className="m-comp-diff">
-                          <strong>{slide.diffNumber}</strong>
+                          💥 <strong>{slide.diffNumber}</strong>
                         </div>
                       </article>
                     ))}
@@ -914,7 +914,7 @@ export default function MobileAppClient() {
                         onClick={() => selectCarAndJumpToForm(rev.carModel)}
                       >
                         <img
-                          src={rev.imageUrl || "/images/kpro/car_20.jpg?v=sleek5"}
+                          src={rev.imageUrl || "/images/kpro/car_20.jpg?v=navyplate1"}
                           alt={rev.carModel}
                           width={110}
                           height={82}
@@ -934,8 +934,8 @@ export default function MobileAppClient() {
                               gap: "0.2rem",
                             }}
                           >
-                            <span>💔 {rev.previousOffer}</span>
-                            <strong>🌍 {rev.finalExportPrice}</strong>
+                            <span>❌ {rev.previousOffer}</span>
+                            <strong>⭕ {rev.finalExportPrice}</strong>
                           </div>
                         </div>
                       </article>
@@ -972,11 +972,10 @@ export default function MobileAppClient() {
               <section className="m-section-card">
                 <div className="m-sec-head">
                   <Calculator size={18} color="#057a44" />
-                  <h2>모바일 3초 수출시세 계산기</h2>
+                  <h2>모바일 3대 경로(폐차·내수·수출) 가치 진단기</h2>
                 </div>
                 <p className="m-sec-sub">
-                  제조사·차종·우대 옵션을 터치하면 일반 폐차가 대비 직수출 예상가를
-                  즉시 계산합니다.
+                  허위 미끼 가격표 대신, 내 차가 왜 폐차·내수에서 손해 보는지와 해외 바이어가 왜 웃돈을 주는지 즉시 진단합니다.
                 </p>
 
                 <div className="m-field">
@@ -1041,7 +1040,7 @@ export default function MobileAppClient() {
                           }
                         >
                           <span>{checked ? "☑" : "☐"} {opt.label}</span>
-                          <strong>{opt.desc}</strong>
+                          <strong style={{ fontSize: "0.75rem" }}>{opt.desc}</strong>
                         </button>
                       );
                     })}
@@ -1049,21 +1048,64 @@ export default function MobileAppClient() {
                 </div>
 
                 <div className="m-calc-result-box">
-                  <div className="m-calc-res-row" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
-                    <span>💔 [{currentSimModel.modelName}] 국내에서의 추억과 설움</span>
-                    <span style={{ fontSize: "0.82rem", color: "#cbd5e1", lineHeight: 1.45 }}>
-                      {currentSimModel.memoryStory}
-                    </span>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.5rem",
+                      textAlign: "left",
+                    }}
+                  >
+                    <div
+                      style={{
+                        background: "rgba(15, 23, 42, 0.55)",
+                        padding: "0.65rem",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          fontWeight: 800,
+                          color: "#fca5a5",
+                          display: "block",
+                        }}
+                      >
+                        ❌ 1·2경로 (폐차·국내매매) 진행 시 손해 이유
+                      </span>
+                      <span style={{ fontSize: "0.8rem", color: "#e2e8f0" }}>
+                        {currentSimModel.memoryStory}
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        background: "rgba(5, 122, 68, 0.25)",
+                        padding: "0.65rem",
+                        borderRadius: "8px",
+                        border: "1px solid rgba(28, 219, 131, 0.4)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          fontWeight: 800,
+                          color: "#ffdf4b",
+                          display: "block",
+                        }}
+                      >
+                        ⭕ 3경로 (병국이 바이어 직통) 웃돈 이유
+                      </span>
+                      <strong style={{ fontSize: "0.82rem", color: "#ffffff" }}>
+                        {currentSimModel.overseasStory}
+                      </strong>
+                    </div>
+                    <p
+                      className="m-calc-country"
+                      style={{ color: "#6ee7b7", fontWeight: 800 }}
+                    >
+                      💥 {currentSimModel.heartPromise}
+                    </p>
                   </div>
-                  <div className="m-calc-res-row is-highlight" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
-                    <span>🌍 바다 건너 제2의 인생 ({currentSimModel.targetCountry})</span>
-                    <strong style={{ fontSize: "0.86rem", lineHeight: 1.45 }}>
-                      {currentSimModel.overseasStory}
-                    </strong>
-                  </div>
-                  <p className="m-calc-country">
-                    ✨ {currentSimModel.heartPromise}
-                  </p>
                   <button
                     type="button"
                     className="m-submit-cta"
@@ -1072,7 +1114,7 @@ export default function MobileAppClient() {
                       selectCarAndJumpToForm(currentSimModel.modelName)
                     }
                   >
-                    <span>이 차종 확정 시세 신청하기</span>
+                    <span>이 차종 바이어 직통 시세 신청하기</span>
                     <ArrowRight size={18} />
                   </button>
                 </div>
@@ -1153,8 +1195,8 @@ export default function MobileAppClient() {
                             gap: "0.2rem",
                           }}
                         >
-                          <span>💔 {v.scrapPriceRange}</span>
-                          <strong>🌍 {v.exportPriceRange}</strong>
+                          <span>❌ {v.scrapPriceRange}</span>
+                          <strong>⭕ {v.exportPriceRange}</strong>
                         </div>
                       </div>
                     </article>
