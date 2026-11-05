@@ -266,6 +266,100 @@ export default function MobileAppClient() {
         <div className="m-phone-screen">
           {/* Mobile Sticky App Header */}
           <header className="m-header">
+            {/* 모바일 맨 윗줄: 유튜브 · 인스타 · 틱톡 · 카톡상담 1열 정렬 */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "0.32rem",
+                padding: "0.4rem 0.6rem",
+                background: "#060a12",
+                borderBottom: "1px solid rgba(212, 175, 55, 0.22)",
+              }}
+            >
+              <a
+                href={SITE_CONFIG.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0.32rem 0.15rem",
+                  borderRadius: "999px",
+                  background: "#dc2626",
+                  color: "#ffffff",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                ▶ 유튜브
+              </a>
+              <a
+                href={SITE_CONFIG.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0.32rem 0.15rem",
+                  borderRadius: "999px",
+                  background:
+                    "linear-gradient(135deg, #833ab4 0%, #fd1d1d 55%, #fcb045 100%)",
+                  color: "#ffffff",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                📸 인스타
+              </a>
+              <a
+                href={SITE_CONFIG.tiktokUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0.32rem 0.15rem",
+                  borderRadius: "999px",
+                  background: "#0f172a",
+                  border: "1px solid rgba(0, 242, 254, 0.6)",
+                  color: "#ffffff",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                🎵 틱톡
+              </a>
+              <a
+                href={SITE_CONFIG.kakaoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0.32rem 0.15rem",
+                  borderRadius: "999px",
+                  background: "#fee500",
+                  color: "#3c1e1e",
+                  fontSize: "0.72rem",
+                  fontWeight: 900,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                💬 카톡상담
+              </a>
+            </div>
             <div className="m-header-top">
               <Link href="/m" className="m-brand">
                 <span className="m-brand-badge">병국직영</span>
@@ -855,8 +949,6 @@ export default function MobileAppClient() {
                             <strong>{slide.carName}</strong>
                             <span>{slide.year}</span>
                           </div>
-                            </div>
-                          )}
                           <div
                             className="m-comp-row"
                             style={{
@@ -1235,10 +1327,34 @@ export default function MobileAppClient() {
                   )}
                 </div>
                 <div className="m-vehicle-stack">
-                  {(mSelectedCat === "전체"
-                    ? EXPORT_VEHICLES
-                    : EXPORT_VEHICLES.filter((v) => v.category === mSelectedCat)
-                  ).map((v) => (
+                  {(() => {
+                    const nowKst = new Date(Date.now() + 9 * 3600 * 1000);
+                    const daySeed = Math.floor(nowKst.getTime() / 86400000);
+                    const baseList =
+                      mSelectedCat === "전체"
+                        ? EXPORT_VEHICLES
+                        : EXPORT_VEHICLES.filter((v) => v.category === mSelectedCat);
+                    const len = baseList.length;
+                    const shift = len > 0 ? (daySeed * 2) % len : 0;
+                    const rotatedList =
+                      mSelectedCat === "전체" && len > 2
+                        ? [...baseList.slice(shift), ...baseList.slice(0, shift)]
+                        : baseList;
+
+                    return rotatedList.map((v, vIdx) => {
+                      const daysAgo = Math.floor(vIdx / 2);
+                      const slotInDay = (vIdx % 2) + 1;
+                      const d = new Date(nowKst.getTime() - daysAgo * 86400000);
+                      const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+                      const dd = String(d.getUTCDate()).padStart(2, "0");
+                      const dailyBadge =
+                        daysAgo === 0
+                          ? `🔥 오늘(${mm}.${dd}) ${slotInDay}호차 매입완료`
+                          : daysAgo === 1
+                            ? `✓ 어제(${mm}.${dd}) ${slotInDay}호차 매입완료`
+                            : `✓ ${mm}월 ${dd}일 (${slotInDay}호차 매입완료)`;
+
+                      return (
                     <article
                       key={v.id}
                       className="m-vehicle-item"
@@ -1254,9 +1370,12 @@ export default function MobileAppClient() {
                       <div className="m-vehicle-body">
                         <span
                           className="m-vehicle-badge"
-                          style={{ background: "#057a44", color: "#ffffff" }}
+                          style={{
+                            background: vIdx < 2 ? "#dc2626" : "#057a44",
+                            color: "#ffffff",
+                          }}
                         >
-                          일일 2대 매입 · {v.badge}
+                          {dailyBadge}
                         </span>
                         <h3>{v.name}</h3>
                         <p className="m-vehicle-years">{v.years}</p>
@@ -1273,7 +1392,9 @@ export default function MobileAppClient() {
                         </div>
                       </div>
                     </article>
-                  ))}
+                      );
+                    });
+                  })()}
                 </div>
               </section>
             )}

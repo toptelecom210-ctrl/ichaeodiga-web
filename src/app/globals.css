@@ -6122,3 +6122,31 @@
     font-weight: 800;
   }
 }
+
+
+  @media (max-width: 900px) {
+    .top-notice-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.4rem;
+    }
+
+    .top-notice-left {
+      font-size: 0.74rem;
+      justify-content: center;
+    }
+
+    .top-sns-quick-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.32rem;
+      inline-size: 100%;
+      margin-inline-start: 0;
+    }
+
+    .top-sns-mini-pill {
+      justify-content: center;
+      padding: 0.32rem 0.2rem;
+      font-size: 0.74rem;
+    }
+  }
