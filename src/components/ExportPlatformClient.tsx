@@ -662,10 +662,17 @@ export default function ExportPlatformClient() {
 
   return (
     <>
-      {/* Top Executive Announcement Bar — 맨 윗줄: 유튜브 · 인스타 · 틱톡 · 카톡상담 순서 고정 */}
+      {/* Top Executive Announcement Bar */}
       <div className="top-notice-bar">
         <div className="container top-notice-inner">
-          <div className="top-sns-quick-row is-topmost-priority">
+          <div className="top-notice-left">
+            <span className="notice-badge">REAL FACE GUARANTEE</span>
+            <span>
+              🔥 <strong>타사 견적 3군데 먼저 받고 마지막에 오세요! 무조건 이겨드립니다</strong> ·
+              현장 10원이라도 감가 시 <strong>유튜브 실명 박제 OK</strong> · <strong>고객 60%가 병국이 얼굴 믿고 차부터 보내는 곳</strong>
+            </span>
+          </div>
+          <div className="top-sns-quick-row">
             <a
               href={SITE_CONFIG.youtubeUrl}
               target="_blank"
@@ -703,13 +710,6 @@ export default function ExportPlatformClient() {
               <span>💬 카톡상담</span>
             </a>
           </div>
-          <div className="top-notice-left">
-            <span className="notice-badge">REAL FACE GUARANTEE</span>
-            <span>
-              🔥 <strong>타사 견적 3군데 먼저 받고 마지막에 오세요! 무조건 이겨드립니다</strong> ·
-              현장 10원이라도 감가 시 <strong>유튜브 실명 박제 OK</strong> · <strong>고객 60%가 병국이 얼굴 믿고 차부터 보내는 곳</strong>
-            </span>
-          </div>
         </div>
       </div>
 
@@ -743,46 +743,6 @@ export default function ExportPlatformClient() {
             <ul>
               <li>
                 <a
-                  href={SITE_CONFIG.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="header-sns-nav-pill is-youtube"
-                >
-                  ▶ 유튜브
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SITE_CONFIG.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="header-sns-nav-pill is-instagram"
-                >
-                  📸 인스타
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SITE_CONFIG.tiktokUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="header-sns-nav-pill is-tiktok"
-                >
-                  🎵 틱톡
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SITE_CONFIG.kakaoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="header-sns-nav-pill is-kakao"
-                >
-                  💬 카톡상담
-                </a>
-              </li>
-              <li>
-                <a
                   href="#price-simulator"
                   onClick={(e) => {
                     e.preventDefault();
@@ -794,6 +754,17 @@ export default function ExportPlatformClient() {
               </li>
               <li>
                 <a
+                  href="#live-quote-board"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    void scrollToSectionAndFocus("live-quote-board");
+                  }}
+                >
+                  실시간 견적현황
+                </a>
+              </li>
+              <li>
+                <a
                   href="#export-vehicles"
                   onClick={(e) => {
                     e.preventDefault();
@@ -801,6 +772,43 @@ export default function ExportPlatformClient() {
                   }}
                 >
                   차종별 수출시세
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#regional-visit-section"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    void scrollToSectionAndFocus("regional-visit-section");
+                  }}
+                >
+                  전국 무료방문예약
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#sns-channel-hub"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    void scrollToSectionAndFocus("sns-channel-hub");
+                  }}
+                  style={{
+                    color: "#057a44",
+                    fontWeight: 900,
+                  }}
+                >
+                  SNS·카톡채널
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#byungguk-videos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    void scrollToSectionAndFocus("byungguk-videos");
+                  }}
+                >
+                  병국이 현장직캠
                 </a>
               </li>
               <li>
@@ -850,60 +858,15 @@ export default function ExportPlatformClient() {
         {/* Dedicated Single-Line Swipeable Mobile Quick Nav (Visible on Mobile/Tablet < 1024px) */}
         <nav className="mobile-quick-nav" aria-label="모바일 한줄 빠른 메뉴">
           <a
-            href={SITE_CONFIG.youtubeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/m"
             className="mobile-nav-chip"
             style={{
-              background: "#dc2626",
+              background: "#057a44",
               color: "#ffffff",
-              borderColor: "#ef4444",
-              fontWeight: 900,
+              borderColor: "#1cdb83",
             }}
           >
-            ▶ 유튜브
-          </a>
-          <a
-            href={SITE_CONFIG.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mobile-nav-chip"
-            style={{
-              background: "linear-gradient(135deg, #833ab4 0%, #fd1d1d 55%, #fcb045 100%)",
-              color: "#ffffff",
-              borderColor: "#fd1d1d",
-              fontWeight: 900,
-            }}
-          >
-            📸 인스타
-          </a>
-          <a
-            href={SITE_CONFIG.tiktokUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mobile-nav-chip"
-            style={{
-              background: "#0f172a",
-              color: "#67e8f9",
-              borderColor: "#00f2fe",
-              fontWeight: 900,
-            }}
-          >
-            🎵 틱톡
-          </a>
-          <a
-            href={SITE_CONFIG.kakaoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mobile-nav-chip"
-            style={{
-              background: "#fee500",
-              color: "#3c1e1e",
-              borderColor: "#facc15",
-              fontWeight: 900,
-            }}
-          >
-            💬 카톡상담
+            📱 앱 전용모드(/m)
           </a>
           <button
             type="button"
@@ -924,9 +887,44 @@ export default function ExportPlatformClient() {
           <button
             type="button"
             className="mobile-nav-chip"
+            onClick={() => void scrollToSectionAndFocus("live-quote-board")}
+          >
+            실시간 견적원장
+          </button>
+          <button
+            type="button"
+            className="mobile-nav-chip"
             onClick={() => void scrollToSectionAndFocus("export-vehicles")}
           >
             차종별 수출시세
+          </button>
+          <button
+            type="button"
+            className="mobile-nav-chip"
+            onClick={() =>
+              void scrollToSectionAndFocus("regional-visit-section")
+            }
+          >
+            전국 무료방문
+          </button>
+          <button
+            type="button"
+            className="mobile-nav-chip"
+            onClick={() => void scrollToSectionAndFocus("sns-channel-hub")}
+            style={{
+              background: "#fee500",
+              color: "#3c1e1e",
+              fontWeight: 900,
+            }}
+          >
+            💬 SNS·카톡채널
+          </button>
+          <button
+            type="button"
+            className="mobile-nav-chip"
+            onClick={() => void scrollToSectionAndFocus("byungguk-videos")}
+          >
+            병국이 현장직캠
           </button>
           <button
             type="button"
