@@ -210,9 +210,12 @@
   .top-notice-left,
   .top-notice-right {
     display: inline-flex;
-    align-items: safe center;
-    gap: 0.65rem;
-    flex-shrink: 0;
+    align-items: center;
+    gap: 0.55rem;
+    flex: 1 1 auto;
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
@@ -5657,8 +5660,12 @@
   .top-sns-quick-row {
     display: inline-flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 0.4rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    margin-inline-start: auto;
+    white-space: nowrap;
   }
 
   .top-sns-mini-pill {

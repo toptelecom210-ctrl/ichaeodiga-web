@@ -668,8 +668,8 @@ export default function ExportPlatformClient() {
           <div className="top-notice-left">
             <span className="notice-badge">REAL FACE GUARANTEE</span>
             <span>
-              🔥 <strong>타사 견적 3군데 먼저 받고 마지막에 오세요! 무조건 이겨드립니다</strong> ·
-              현장 10원이라도 감가 시 <strong>유튜브 실명 박제 OK</strong> · <strong>고객 60%가 병국이 얼굴 믿고 차부터 보내는 곳</strong>
+              🔥 <strong>타사 견적 3곳 먼저 받고 마지막에 오세요!</strong> ·
+              현장 10원 감가도 ZERO · <strong>고객 60%가 병국이 얼굴 믿고 선탁송</strong>
             </span>
           </div>
           <div className="top-sns-quick-row">
