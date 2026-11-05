@@ -1371,16 +1371,16 @@ export default function ExportPlatformClient() {
                         <span className="year">{slide.year}</span>
                       </p>
                       <p className="kpro-slide-price-row">
-                        <span>중고차매매상사</span>
+                        <span>국내에서의 설움</span>
                         <span>{slide.domesticPrice}</span>
                       </p>
                       <p className="kpro-slide-price-row is-export">
-                        <span>중고차수출</span>
+                        <span>바다 건너 새출발</span>
                         <span>{slide.exportPrice}</span>
                       </p>
                     </div>
                     <div className="kpro-slide-bottom-banner">
-                      무려 <span>{slide.diffNumber}</span> 차이!
+                      <span>{slide.diffNumber}</span>
                     </div>
                   </article>
                 )
@@ -1950,8 +1950,8 @@ export default function ExportPlatformClient() {
                   </div>
                   <div className="live-incoming-right">
                     <span className="live-incoming-quote">
-                      기존 {incoming.domesticQuote} →{" "}
-                      <strong>이차어디가 수출 {incoming.exportPrice}</strong>
+                      {incoming.domesticQuote} →{" "}
+                      <strong>{incoming.exportPrice}</strong>
                     </span>
                     <span className="live-incoming-up">{incoming.bonusDiff}</span>
                     <span className="live-incoming-status">
@@ -2016,10 +2016,10 @@ export default function ExportPlatformClient() {
                     <div className="ticker-price-compare">
                       <div>
                         <span className="text-muted">
-                          기존 {item.domesticQuote} →{" "}
+                          {item.domesticQuote} →{" "}
                         </span>
                         <strong className="text-primary">
-                          수출 {item.exportPrice}
+                          {item.exportPrice}
                         </strong>
                       </div>
                       <span className="ticker-bonus-pill">{item.bonusDiff}</span>
@@ -2049,7 +2049,7 @@ export default function ExportPlatformClient() {
                         {item.carModel}
                       </strong>
                       <span className="stream-chip-price">
-                        수출 {item.exportPrice} ({item.bonusDiff})
+                        {item.exportPrice} ({item.bonusDiff})
                       </span>
                       <span className="stream-chip-status">{item.status}</span>
                     </button>
@@ -2233,7 +2233,7 @@ export default function ExportPlatformClient() {
                           <span>{opt.label}</span>
                         </span>
                         <span className="text-primary fw-800">
-                          +{opt.bonusMan}만 원
+                          {opt.desc}
                         </span>
                       </label>
                     ))}
@@ -2241,16 +2241,16 @@ export default function ExportPlatformClient() {
                 </div>
               </div>
 
-              {/* Right Column: Live Calculated Export Quote & 1-Step SMS Request */}
+              {/* Right Column: Live Story & Value Diagnosis + 1-Step Request */}
               <div className="simulator-result-card">
                 <div>
                   <div className="sim-valuation-header">
                     <span className="sim-valuation-badge">
                       <Calculator size={13} aria-hidden="true" />
-                      <span>VALUATION SHEET</span>
+                      <span>REAL VALUE STORY</span>
                     </span>
                     <span className="sim-valuation-country">
-                      주요 수출국: {currentSimModel.targetCountry}
+                      새 출발 국가: {currentSimModel.targetCountry}
                     </span>
                   </div>
 
@@ -2267,36 +2267,66 @@ export default function ExportPlatformClient() {
                     {currentSimModel.modelName}
                   </h3>
                   <p className="sim-valuation-trim">
-                    선택 트림: {simSubGen} · 옵션 가산금{" "}
+                    선택 트림: {simSubGen} · 바이어 우대 옵션{" "}
                     <strong className="text-gold">
-                      +{totalOptionBonusMan}만 원
+                      {simSelectedOptions.length}개 항목
                     </strong>{" "}
-                    반영됨
+                    최우선 반영됨
                   </p>
 
-                  <div className="sim-valuation-grid">
-                    <div>
-                      <span className="price-col-label">일반 폐차 고철가</span>
-                      <span className="price-col-scrap">
-                        {currentSimModel.scrapMinMan} ~{" "}
-                        {currentSimModel.scrapMaxMan}만 원
+                  <div
+                    className="sim-valuation-grid"
+                    style={{ gridTemplateColumns: "1fr", gap: "0.75rem" }}
+                  >
+                    <div
+                      style={{
+                        background: "rgba(255,255,255,0.06)",
+                        padding: "0.85rem 1rem",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      <span className="price-col-label">
+                        💔 [{currentSimModel.modelName}] 국내에서의 추억과 설움
+                      </span>
+                      <span
+                        style={{
+                          display: "block",
+                          color: "#cbd5e1",
+                          fontSize: "0.9rem",
+                          lineHeight: 1.5,
+                          marginTop: "0.25rem",
+                        }}
+                      >
+                        {currentSimModel.memoryStory}
                       </span>
                     </div>
-                    <div>
+                    <div
+                      style={{
+                        background: "rgba(28, 219, 131, 0.12)",
+                        border: "1px solid rgba(28, 219, 131, 0.35)",
+                        padding: "0.85rem 1rem",
+                        borderRadius: "10px",
+                      }}
+                    >
                       <span className="price-col-label text-gold">
-                        병국이수출 직수출 예상 매입가
+                        🌍 바다 건너 [{currentSimModel.targetCountry}]에서의 새 인생
                       </span>
-                      <span className="price-col-export text-gold">
-                        {calculatedExportMinMan.toLocaleString()} ~{" "}
-                        {calculatedExportMaxMan.toLocaleString()}만 원
+                      <span
+                        style={{
+                          display: "block",
+                          color: "#ffffff",
+                          fontSize: "0.92rem",
+                          fontWeight: 700,
+                          lineHeight: 1.5,
+                          marginTop: "0.25rem",
+                        }}
+                      >
+                        {currentSimModel.overseasStory}
                       </span>
                     </div>
                     <div className="sim-valuation-profit">
                       <TrendingUp size={16} aria-hidden="true" />
-                      <span>
-                        폐차 대비 최대 +{calculatedMaxProfitMan.toLocaleString()}만
-                        원 추가 수령 가능
-                      </span>
+                      <span>{currentSimModel.heartPromise}</span>
                     </div>
                   </div>
                 </div>
@@ -3460,23 +3490,77 @@ export default function ExportPlatformClient() {
                       <span>{item.sampleSpec}</span>
                     </div>
 
-                    <div className="vehicle-price-box">
-                      <div>
-                        <span className="price-col-label">일반 폐차 고철가</span>
-                        <span className="price-col-scrap">
+                    <div
+                      className="vehicle-price-box"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.65rem",
+                      }}
+                    >
+                      <div
+                        style={{
+                          background: "#f8fafc",
+                          padding: "0.7rem 0.85rem",
+                          borderRadius: "8px",
+                          borderLeft: "3px solid #94a3b8",
+                        }}
+                      >
+                        <span
+                          className="price-col-label"
+                          style={{ color: "#475569", fontWeight: 800 }}
+                        >
+                          💔 국내에서의 설움과 추억
+                        </span>
+                        <span
+                          style={{
+                            display: "block",
+                            fontSize: "0.86rem",
+                            color: "#334155",
+                            lineHeight: 1.5,
+                            marginTop: "0.2rem",
+                            textDecoration: "none",
+                          }}
+                        >
                           {item.scrapPriceRange}
                         </span>
                       </div>
-                      <div>
-                        <span className="price-col-label">
-                          이차어디가 수출 시세
+                      <div
+                        style={{
+                          background: "#ecfdf5",
+                          padding: "0.7rem 0.85rem",
+                          borderRadius: "8px",
+                          borderLeft: "3px solid #057a44",
+                        }}
+                      >
+                        <span
+                          className="price-col-label"
+                          style={{ color: "#057a44", fontWeight: 900 }}
+                        >
+                          🌍 바다 건너 제2의 인생 ({item.exportCountries})
                         </span>
-                        <span className="price-col-export">
+                        <span
+                          style={{
+                            display: "block",
+                            fontSize: "0.88rem",
+                            color: "#064e3b",
+                            fontWeight: 700,
+                            lineHeight: 1.5,
+                            marginTop: "0.2rem",
+                          }}
+                        >
                           {item.exportPriceRange}
                         </span>
                       </div>
-                      <div className="vehicle-profit-banner">
-                        폐차 대비 {item.maxExtraProfit}
+                      <div
+                        className="vehicle-profit-banner"
+                        style={{
+                          fontSize: "0.85rem",
+                          lineHeight: 1.4,
+                          padding: "0.55rem 0.75rem",
+                        }}
+                      >
+                        ✨ {item.maxExtraProfit}
                       </div>
                     </div>
 
@@ -3917,16 +4001,21 @@ export default function ExportPlatformClient() {
                   </div>
 
                   <div>
-                    <div className="review-gain-banner">
-                      <div>
-                        <span className="text-muted">
-                          기존 {rev.previousOffer} →{" "}
-                        </span>
-                        <strong className="text-primary">
-                          이차어디가 {rev.finalExportPrice}
-                        </strong>
+                    <div
+                      className="review-gain-banner"
+                      style={{
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        gap: "0.4rem",
+                      }}
+                    >
+                      <div style={{ fontSize: "0.84rem", color: "#64748b", lineHeight: 1.45 }}>
+                        💔 <span>{rev.previousOffer}</span>
                       </div>
-                      <span className="ticker-bonus-pill">{rev.extraGain}</span>
+                      <div style={{ fontSize: "0.88rem", lineHeight: 1.45 }}>
+                        🌍 <strong className="text-primary">{rev.finalExportPrice}</strong>
+                      </div>
+                      <span className="ticker-bonus-pill">✨ {rev.extraGain}</span>
                     </div>
 
                     <div className="ticker-header-row">
@@ -4061,18 +4150,18 @@ export default function ExportPlatformClient() {
                     <span>DIRECT VALUATION CONCIERGE #{cycleNum}</span>
                   </span>
                   <h2 className="section-title text-white">
-                    아직 내 차의 해외 바이어 최고가를 확인하지 않으셨나요?
+                    정든 내 차, 고철이 아닌 가치 있는 새 출발을 선물하세요
                   </h2>
                   <p className="section-desc">
                     지금 보고 계신{" "}
                     <strong className="text-gold">
                       {spotlightVehicle.name}
                     </strong>{" "}
-                    차종은 일반 폐차 대비{" "}
+                    차종은 —{" "}
                     <strong className="text-gold">
                       {spotlightVehicle.maxExtraProfit}
-                    </strong>{" "}
-                    수령이 가능합니다. 아래에서 차종과 연락처만 입력해 즉시 확인하세요.
+                    </strong>
+                    . 아래에서 차종과 연락처만 남겨주시면 병국이가 직접 정직하게 안내해 드립니다.
                   </p>
                 </div>
 

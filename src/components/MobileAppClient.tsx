@@ -856,16 +856,16 @@ export default function MobileAppClient() {
                             <span>{slide.year}</span>
                           </div>
                           <div className="m-comp-row">
-                            <span>내수매매</span>
+                            <span>국내 설움</span>
                             <span>{slide.domesticPrice}</span>
                           </div>
                           <div className="m-comp-row is-export">
-                            <span>병국이수출</span>
+                            <span>새 출발</span>
                             <strong>{slide.exportPrice}</strong>
                           </div>
                         </div>
                         <div className="m-comp-diff">
-                          무려 <strong>{slide.diffNumber}</strong> 차이!
+                          <strong>{slide.diffNumber}</strong>
                         </div>
                       </article>
                     ))}
@@ -926,9 +926,16 @@ export default function MobileAppClient() {
                           </span>
                           <h3>{rev.carModel}</h3>
                           <p className="m-vehicle-years">{rev.title}</p>
-                          <div className="m-vehicle-prices">
-                            <span>{rev.previousOffer}</span>
-                            <strong>수출 {rev.finalExportPrice}</strong>
+                          <div
+                            className="m-vehicle-prices"
+                            style={{
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              gap: "0.2rem",
+                            }}
+                          >
+                            <span>💔 {rev.previousOffer}</span>
+                            <strong>🌍 {rev.finalExportPrice}</strong>
                           </div>
                         </div>
                       </article>
@@ -1034,7 +1041,7 @@ export default function MobileAppClient() {
                           }
                         >
                           <span>{checked ? "☑" : "☐"} {opt.label}</span>
-                          <strong>+{opt.bonusMan}만원</strong>
+                          <strong>{opt.desc}</strong>
                         </button>
                       );
                     })}
@@ -1042,22 +1049,20 @@ export default function MobileAppClient() {
                 </div>
 
                 <div className="m-calc-result-box">
-                  <div className="m-calc-res-row">
-                    <span>일반 폐차 고철가</span>
-                    <span>
-                      {currentSimModel.scrapMinMan}~{currentSimModel.scrapMaxMan}
-                      만 원
+                  <div className="m-calc-res-row" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
+                    <span>💔 [{currentSimModel.modelName}] 국내에서의 추억과 설움</span>
+                    <span style={{ fontSize: "0.82rem", color: "#cbd5e1", lineHeight: 1.45 }}>
+                      {currentSimModel.memoryStory}
                     </span>
                   </div>
-                  <div className="m-calc-res-row is-highlight">
-                    <span>병국이수출 예상 매입가</span>
-                    <strong>
-                      {simExportMin.toLocaleString()} ~{" "}
-                      {simExportMax.toLocaleString()}만 원
+                  <div className="m-calc-res-row is-highlight" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.25rem" }}>
+                    <span>🌍 바다 건너 제2의 인생 ({currentSimModel.targetCountry})</span>
+                    <strong style={{ fontSize: "0.86rem", lineHeight: 1.45 }}>
+                      {currentSimModel.overseasStory}
                     </strong>
                   </div>
                   <p className="m-calc-country">
-                    주요 수출국: {currentSimModel.targetCountry}
+                    ✨ {currentSimModel.heartPromise}
                   </p>
                   <button
                     type="button"
@@ -1140,9 +1145,16 @@ export default function MobileAppClient() {
                         <span className="m-vehicle-badge">{v.badge}</span>
                         <h3>{v.name}</h3>
                         <p className="m-vehicle-years">{v.years}</p>
-                        <div className="m-vehicle-prices">
-                          <span>내수 {v.scrapPriceRange}</span>
-                          <strong>수출 {v.exportPriceRange}</strong>
+                        <div
+                          className="m-vehicle-prices"
+                          style={{
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            gap: "0.2rem",
+                          }}
+                        >
+                          <span>💔 {v.scrapPriceRange}</span>
+                          <strong>🌍 {v.exportPriceRange}</strong>
                         </div>
                       </div>
                     </article>
