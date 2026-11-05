@@ -364,7 +364,7 @@ export default function MobileAppClient() {
                         </span>
                       </h1>
                       <p className="m-hero-desc">
-                        달콤한 거짓말로 부른 뒤 현장에서 상처 주지 않습니다. 유튜브·인스타·틱톡에 얼굴 다 걸고 일하는 병국이가 <strong>처음 약속 그대로 100% 선입금</strong>합니다.
+                        달콤한 거짓말로 부른 뒤 현장에서 상처 주지 않습니다. <strong>고객 60% 이상이 유튜브·SNS 속 병국이 얼굴만 믿고 그냥 차부터 편하게 보내주시는</strong> 검증된 안심 거래를 약속합니다.
                       </p>
                       <div className="m-hero-badges">
                         <span>✓ 얼굴·실명 보증</span>

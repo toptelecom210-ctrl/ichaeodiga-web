@@ -669,7 +669,7 @@ export default function ExportPlatformClient() {
             <span className="notice-badge">REAL FACE GUARANTEE</span>
             <span>
               유튜브·인스타·틱톡 얼굴 다 공개하고 일하는 <strong>병국(뺑국이)</strong> 실명 보증 ·
-              거짓 미끼견적 ZERO · <strong>당일 현장 100% 선입금</strong>
+              거짓 미끼견적 ZERO · <strong>얼굴 믿고 차부터 편하게 보내셔도 끝까지 책임지는 안심 거래</strong>
             </span>
           </div>
           <div className="top-sns-quick-row">
@@ -1284,7 +1284,7 @@ export default function ExportPlatformClient() {
                         </div>
                         <div className="trust-strip-item">
                           <CheckCircle2 size={14} color="#057a44" />
-                          <span>차량 인수 전 100% 실시간 현금 선입금으로 믿음 증명</span>
+                          <span>고객 60% 이상이 병국이 얼굴만 믿고 차부터 편하게 보내주시는 안심 거래</span>
                         </div>
                       </div>
                     </fieldset>
@@ -1316,15 +1316,15 @@ export default function ExportPlatformClient() {
 
             <div className="kpro-vs-banner">
               <p className="kpro-vs-domestic">
-                국내매입가격
+                익명 브로커 허위견적
                 <br />
-                <strong>500만원</strong>
+                <strong>현장 말바꿈·감가</strong>
               </p>
               <p className="kpro-vs-badge">vs</p>
               <p className="kpro-vs-export">
-                수출가
+                병국이 얼굴 실명보증
                 <br />
-                800만원
+                약속금액 그대로!
               </p>
               <img
                 src="/images/kpro/calc.png"
@@ -1413,19 +1413,19 @@ export default function ExportPlatformClient() {
 
                 <div className="kpro-graph-grid-stage">
                   <div className="kpro-graph-col">
-                    <p>(내수 매매가)</p>
-                    <p>550~600만원</p>
+                    <p>(익명 미끼업체)</p>
+                    <p>현장 말바꿈·감가</p>
                     <div className="kpro-hei-bar is-gray" />
                   </div>
                   <div className="kpro-graph-col is-export">
-                    <p>800만원</p>
+                    <p>약속금액 100%</p>
                     <div className="kpro-hei-bar is-gradient" />
                   </div>
                 </div>
 
                 <div className="kpro-graph-pri-row">
-                  <p>국내 매입가격</p>
-                  <p className="is-red">정직 수출 매입가</p>
+                  <p>얼굴 숨긴 허위견적</p>
+                  <p className="is-red">병국이 실명보증 정직가</p>
                 </div>
               </div>
 
@@ -1493,19 +1493,19 @@ export default function ExportPlatformClient() {
 
                 <div className="kpro-graph-grid-stage">
                   <div className="kpro-graph-col">
-                    <p>(내수 매매가)</p>
-                    <p>520만원</p>
+                    <p>(일반 알선브로커)</p>
+                    <p>트집 감가 불안</p>
                     <div className="kpro-hei-bar is-gray" />
                   </div>
                   <div className="kpro-graph-col is-export">
-                    <p>800만원</p>
+                    <p>차부터 보내도 안심</p>
                     <div className="kpro-hei-bar is-gradient" />
                   </div>
                 </div>
 
                 <div className="kpro-graph-pri-row">
-                  <p>국내 매입가격</p>
-                  <p className="is-red">정직 수출 매입가</p>
+                  <p>말 바꾸는 낚시견적</p>
+                  <p className="is-red">얼굴 믿고 맡기는 직거래</p>
                 </div>
               </div>
             </div>
@@ -1868,8 +1868,8 @@ export default function ExportPlatformClient() {
               </h2>
               <p className="section-desc" style={{ color: "#cbd5e1" }}>
                 이름도 얼굴도 숨긴 채 터무니없는 금액으로 유인한 뒤 현장에서 상처 주는 악덕
-                브로커들과 다릅니다. <strong>매일 카메라 앞에 서는 병국이는 제 얼굴과 이름을 걸고</strong>{" "}
-                지킬 수 있는 진짜 금액만 말씀드리며, 현장에서 100% 선입금 후 인수합니다.
+                브로커들과 다릅니다. <strong>실제로 차주님 10분 중 6분 이상은 유튜브·SNS 속 병국이 얼굴만 믿고 그냥 차부터 편하게 보내주십니다.</strong>{" "}
+                그 큰 믿음에 보답하기 위해 처음 약속한 금액 그대로 투명하게 당일 정산해 드립니다.
               </p>
             </div>
 
@@ -3797,10 +3797,11 @@ export default function ExportPlatformClient() {
 
               <div className="process-step-card">
                 <span className="step-number-badge">03</span>
-                <h3 className="step-title">현장 100% 즉시 대금 송금</h3>
+                <h3 className="step-title">얼굴 믿고 맡기는 투명한 당일 정산</h3>
                 <p className="step-desc">
-                  부당한 현장 감가 없이 약속드린 매입 대금 전액을 차량 이동 전에 차주님
-                  명의 계좌로 현장에서 즉시 입금해 드립니다.
+                  현장 송금은 물론, 차주님 60% 이상이 병국이 얼굴만 믿고 차부터 편하게
+                  보내주십니다. 보내주신 믿음 그대로 단 1원의 억지 감가 없이 당일 깔끔하게
+                  정산해 드립니다.
                 </p>
               </div>
 
