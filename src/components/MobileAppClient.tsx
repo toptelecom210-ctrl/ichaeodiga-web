@@ -855,6 +855,44 @@ export default function MobileAppClient() {
                             <strong>{slide.carName}</strong>
                             <span>{slide.year}</span>
                           </div>
+                          {slide.starBadge && (
+                            <div
+                              style={{
+                                background:
+                                  slide.starType === "seven"
+                                    ? "linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%)"
+                                    : "#f8fafc",
+                                border:
+                                  slide.starType === "seven"
+                                    ? "1px solid #f59e0b"
+                                    : "1px solid #cbd5e1",
+                                borderRadius: "6px",
+                                padding: "0.35rem 0.45rem",
+                                fontSize: "0.7rem",
+                                lineHeight: 1.35,
+                              }}
+                            >
+                              <div
+                                style={{
+                                  fontWeight: 900,
+                                  color: slide.starType === "seven" ? "#b45309" : "#0f172a",
+                                }}
+                              >
+                                {slide.starBadge}
+                              </div>
+                              {slide.starQuote && (
+                                <div
+                                  style={{
+                                    color: "#475569",
+                                    fontWeight: 700,
+                                    marginTop: "0.15rem",
+                                  }}
+                                >
+                                  &ldquo;{slide.starQuote}&rdquo;
+                                </div>
+                              )}
+                            </div>
+                          )}
                           <div
                             className="m-comp-row"
                             style={{

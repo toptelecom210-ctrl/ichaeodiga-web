@@ -1314,6 +1314,9 @@ export const KPRO_HERO_SLIDES: KproHeroSlide[] = [
 
 export interface KproComparisonSlide {
   id: string;
+  starBadge?: string;
+  starQuote?: string;
+  starType?: "seven" | "five" | "fourNine";
   carName: string;
   diffNumber: string;
   diffBadge: string;
@@ -1335,6 +1338,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 320,
     diffNumber: "중간 딜러 마진 0원 · 타사 견적 3곳 완벽 격파!",
     imageUrl: "/images/kpro/car_20.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "별 5개밖에 못 주는 게 아쉽네요! 폐차장 고철값 받을 뻔한 정든 가족차 살려줘서 저는 별 7개 드립니다!",
   },
   {
     id: "kpro-porter",
@@ -1345,6 +1351,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 330,
     diffNumber: "적재함 흠집 감가 ZERO · 조기폐차 대비 압도적 현찰!",
     imageUrl: "/images/vehicles/porter2-doublecab.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "새벽시장 10년 달린 내 보물 1호, 적재함 흠집 10원도 안 깎고 현찰 입금해 줘서 별 7개 줍니다!",
   },
   {
     id: "kpro-6",
@@ -1355,6 +1364,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 300,
     diffNumber: "생애 첫차의 추억까지 예우 · 선루프 웃돈 100% 직행!",
     imageUrl: "/images/kpro/car_6.jpg?v=navyplate1",
+    starType: "five",
+    starBadge: "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)",
+    starQuote: "타사 3곳 먼저 알아보고 맨 마지막에 전화했는데 진짜 제일 많이 쳐주시네요! 생애 첫차 잘 보냈습니다.",
   },
   {
     id: "kpro-santafe",
@@ -1365,6 +1377,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 380,
     diffNumber: "고객 60%가 얼굴 믿고 차부터 보내는 무감가 칼정산!",
     imageUrl: "/images/vehicles/santafe-dm.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "유튜브 얼굴 믿고 돈 받기 전에 차부터 보냈는데 단지 도착 1분 만에 칼입금! 별 7개도 모자랍니다!",
   },
   {
     id: "kpro-19",
@@ -1375,6 +1390,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 280,
     diffNumber: "31만km 고주행·단순교환 감가 0원 · 당일 10분 정산!",
     imageUrl: "/images/kpro/car_19.jpg?v=navyplate1",
+    starType: "fourNine",
+    starBadge: "⭐⭐⭐⭐⭐ 4.9 / 5.0 (별 5개 중 4.9개)",
+    starQuote: "입금이 너무 빨라서 정들었던 내 차 작별 인사할 틈도 없이 가져가셔서 0.1점 뺐습니다ㅋㅋ 최고예요!",
   },
   {
     id: "kpro-4",
@@ -1385,6 +1403,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 330,
     diffNumber: "외판 기스·세월 흔적 감가 ZERO · 유튜브 실명 보증!",
     imageUrl: "/images/kpro/car_4.jpg?v=navyplate1",
+    starType: "five",
+    starBadge: "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)",
+    starQuote: "범퍼 기스가 많아서 걱정했는데 진짜 현장에서 단 10원도 안 깎고 기분 좋게 모셔가셨어요!",
   },
   {
     id: "kpro-1",
@@ -1395,6 +1416,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 350,
     diffNumber: "30만km 돌파 세단도 고철 대신 해외 VIP 명차 대우!",
     imageUrl: "/images/kpro/car_1.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "30만km 넘었다고 고철 취급받던 내 그랜저를 해외 귀빈용 세단으로 대우해 줘서 별 7개 드립니다!",
   },
   {
     id: "kpro-18",
@@ -1405,6 +1429,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 280,
     diffNumber: "폐차장 넘기기 직전 구제 · 리비아 바이어 현찰 직통!",
     imageUrl: "/images/kpro/car_18.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "동네 카센터 말만 듣고 폐차장 넘겼으면 큰일 날 뻔했습니다! 바이어 직통 인정, 무조건 별 7개!",
   },
   {
     id: "kpro-17",
@@ -1415,6 +1442,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 240,
     diffNumber: "국내 비인기 설움 완벽 역전 · 7인승 RV 전용 오더!",
     imageUrl: "/images/kpro/car_17.jpg?v=navyplate1",
+    starType: "five",
+    starBadge: "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)",
+    starQuote: "쉐보레 디젤이라 어딜 가도 찬밥이었는데 병국이 덕분에 중남미 대가족 오더로 대박 났어요!",
   },
   {
     id: "kpro-16",
@@ -1425,6 +1455,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 510,
     diffNumber: "경고등·보험이력 수리비 감가 0원 · 두바이·조지아 직통!",
     imageUrl: "/images/kpro/car_16.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "경고등 핑계로 수백만 원 후려치던 매매상 딜러들과 차원이 다릅니다! 별 5개 만점에 7개 드려요!",
   },
   {
     id: "kpro-15",
@@ -1435,6 +1468,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 550,
     diffNumber: "미세누유·고주행 트집 ZERO · 콰트로 해외 특별 우대!",
     imageUrl: "/images/kpro/car_15.jpg?v=navyplate1",
+    starType: "fourNine",
+    starBadge: "⭐⭐⭐⭐⭐ 4.9 / 5.0 (별 5개 중 4.9개)",
+    starQuote: "진작 병국이한테 연락할 걸 다른 딜러들한테 감정 상한 시간이 아까워서 0.1점 뺍니다ㅎㅎ 대만족!",
   },
   {
     id: "kpro-14",
@@ -1445,6 +1481,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 410,
     diffNumber: "화이트 컬러 + 준신형 SUV 바이어 특별 웃돈 직격!",
     imageUrl: "/images/kpro/car_14.jpg?v=navyplate1",
+    starType: "five",
+    starBadge: "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)",
+    starQuote: "흰색 투싼 선루프 웃돈을 이렇게 시원하게 쳐주실 줄 몰랐습니다. 주변 지인들에게도 추천했어요!",
   },
   {
     id: "kpro-13",
@@ -1455,6 +1494,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 300,
     diffNumber: "유럽형 콜레오스(QM6) 바이어 직통 · 비대면 칼정산!",
     imageUrl: "/images/kpro/car_13.jpg?v=navyplate1",
+    starType: "five",
+    starBadge: "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)",
+    starQuote: "사진 4장 보내고 차부터 먼저 탁송 보냈는데 도착하자마자 바로 정산·말소까지 끝내주시네요!",
   },
   {
     id: "kpro-12",
@@ -1465,6 +1507,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 210,
     diffNumber: "인감 없이 10분 만에 당일 송금·말소 · 경차 최고 대우!",
     imageUrl: "/images/kpro/car_12.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "인감도 필요 없고 경차인데도 대우가 최고예요! 집 앞에서 10분 만에 송금받고 별 7개 찍고 갑니다!",
   },
   {
     id: "kpro-11",
@@ -1475,6 +1520,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 370,
     diffNumber: "유채색·과다주행 감가 ZERO · 중동 청년층 1순위 오더!",
     imageUrl: "/images/kpro/car_11.jpg?v=navyplate1",
+    starType: "five",
+    starBadge: "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점)",
+    starQuote: "파란색 차라고 감가 치던 국내 딜러들 보란 듯이 중동 바이어 최고가로 기분 좋게 넘겼습니다!",
   },
   {
     id: "kpro-10",
@@ -1485,6 +1533,9 @@ export const KPRO_COMPARISON_SLIDES: KproComparisonSlide[] = [
     diffMan: 420,
     diffNumber: "대형 플래그십 감가 구제 · CIS권 귀빈 의전용 직수출!",
     imageUrl: "/images/kpro/car_10.jpg?v=navyplate1",
+    starType: "seven",
+    starBadge: "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개!)",
+    starQuote: "아버지께서 아끼시던 차라 마음 쓰였는데 당일 세금계산서에 VIP 의전차 대우까지 별 7개 드립니다!",
   },
 ];
 

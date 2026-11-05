@@ -1367,6 +1367,21 @@ export default function ExportPlatformClient() {
                         <span>{slide.carName}</span>
                         <span className="year">{slide.year}</span>
                       </p>
+                      {slide.starBadge && (
+                        <div
+                          className={`kpro-star-rating-box ${
+                            slide.starType === "seven" ? "is-seven" : ""
+                          }`}
+                        >
+                          <div className="kpro-star-head">
+                            <span className="kpro-star-label">차주 체감 만족도</span>
+                            <strong className="kpro-star-score">{slide.starBadge}</strong>
+                          </div>
+                          {slide.starQuote && (
+                            <p className="kpro-star-quote">&ldquo;{slide.starQuote}&rdquo;</p>
+                          )}
+                        </div>
+                      )}
                       <div className="kpro-slide-price-row">
                         <strong className="kpro-story-tag is-bad">
                           😢 타사 딜러·폐차장 설움 사연
@@ -3489,31 +3504,28 @@ export default function ExportPlatformClient() {
                       <span>{item.sampleSpec}</span>
                     </div>
 
-                    <div
-                      className="vehicle-price-box"
-                      style={{ gridTemplateColumns: "1fr", gap: "0.45rem" }}
-                    >
-                      <div>
-                        <span className="price-col-label">❌ 폐차·내수 진행 시 손해</span>
-                        <span
-                          className="price-col-scrap"
-                          style={{
-                            textDecoration: "none",
-                            fontSize: "0.84rem",
-                            color: "#64748b",
-                          }}
-                        >
+                    <div className="vehicle-price-box">
+                      <div className="showroom-star-bar">
+                        <span className="showroom-star-title">차주 체감 만족도</span>
+                        <strong className="showroom-star-icons">
+                          {item.id.endsWith("1") || item.id.endsWith("3") || item.id.endsWith("6") || item.id.endsWith("8")
+                            ? "⭐⭐⭐⭐⭐⭐⭐ (별 5개 만점에 7개 돌파!)"
+                            : item.id.endsWith("4")
+                              ? "⭐⭐⭐⭐⭐ 4.9 / 5.0 (입금이 너무 빨라 0.1점 뺌ㅋㅋ)"
+                              : "⭐⭐⭐⭐⭐ (별 5개 중 5.0 만점 · 무감가 인증)"}
+                        </strong>
+                      </div>
+                      <div className="showroom-story-block is-bad">
+                        <span className="price-col-label">😢 타사·폐차장 설움 사연</span>
+                        <span className="price-col-scrap">
                           {item.scrapPriceRange}
                         </span>
                       </div>
-                      <div>
+                      <div className="showroom-story-block is-good">
                         <span className="price-col-label">
-                          ⭕ 병국이 바이어 직통 우대
+                          🔥 병국이가 타사보다 더 드리는 이유
                         </span>
-                        <span
-                          className="price-col-export"
-                          style={{ fontSize: "0.9rem" }}
-                        >
+                        <span className="price-col-export">
                           {item.exportPriceRange}
                         </span>
                       </div>
@@ -3949,6 +3961,16 @@ export default function ExportPlatformClient() {
                         · {rev.region} ({rev.yearAndMileage})
                       </span>
                       <span className="text-muted">{rev.date}</span>
+                    </div>
+
+                    <div className="review-star-pill-row">
+                      <span className="review-star-pill">
+                        {rev.id.endsWith("1") || rev.id.endsWith("3") || rev.id.endsWith("5") || rev.id.endsWith("7")
+                          ? "⭐⭐⭐⭐⭐⭐⭐ 차주 만족도: 별 5개 만점에 7개!"
+                          : rev.id.endsWith("4")
+                            ? "⭐⭐⭐⭐⭐ 4.9 / 5.0 (별 5개 중 4.9개)"
+                            : "⭐⭐⭐⭐⭐ 차주 만족도: 별 5개 중 5.0 만점"}
+                      </span>
                     </div>
 
                     <h3 className="vehicle-name">&ldquo;{rev.title}&rdquo;</h3>

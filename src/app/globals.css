@@ -2033,28 +2033,74 @@
     padding: 1rem 1.1rem;
     border: 1px solid var(--border-color);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .showroom-star-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    background: linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    padding: 0.48rem 0.7rem;
+  }
+
+  .showroom-star-title {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #92400e;
+    background: rgba(245, 158, 11, 0.18);
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+  }
+
+  .showroom-star-icons {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #b45309;
+  }
+
+  .showroom-story-block {
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    background: #ffffff;
+    border-inline-start: 3.5px solid #ef4444;
+  }
+
+  .showroom-story-block.is-good {
+    background: #ecfdf5;
+    border-inline-start: 3.5px solid #057a44;
   }
 
   .price-col-label {
     display: block;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-block-end: 0.1rem;
+    font-size: 0.76rem;
+    font-weight: 900;
+    color: #dc2626;
+    margin-block-end: 0.22rem;
+  }
+
+  .showroom-story-block.is-good .price-col-label {
+    color: #047857;
   }
 
   .price-col-scrap {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text-sub);
-    text-decoration: line-through;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.48;
+    color: #334155;
+    text-decoration: none;
   }
 
   .price-col-export {
-    font-size: 1.14rem;
-    font-weight: 800;
-    color: var(--primary);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.48;
+    color: #064e3b;
   }
 
   .vehicle-profit-banner {
@@ -3836,6 +3882,84 @@
   .kpro-slide-price-row.is-export .kpro-story-body {
     color: #064e3b;
     font-weight: 700;
+  }
+
+
+  .kpro-star-rating-box {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 0.55rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.24rem;
+  }
+
+  .kpro-star-rating-box.is-seven {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #f59e0b;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.14);
+  }
+
+  .kpro-star-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .kpro-star-label {
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: #ffffff;
+    background: #0f172a;
+    padding: 0.12rem 0.45rem;
+    border-radius: 999px;
+  }
+
+  .kpro-star-rating-box.is-seven .kpro-star-label {
+    background: #d97706;
+    color: #ffffff;
+  }
+
+  .kpro-star-score {
+    font-size: 0.79rem;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+  }
+
+  .kpro-star-rating-box.is-seven .kpro-star-score {
+    color: #b45309;
+  }
+
+  .kpro-star-quote {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #334155;
+  }
+
+  .kpro-star-rating-box.is-seven .kpro-star-quote {
+    color: #78350f;
+  }
+
+  .review-star-pill-row {
+    margin-block-start: 0.45rem;
+    margin-block-end: 0.15rem;
+  }
+
+  .review-star-pill {
+    display: inline-block;
+    background: linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1px solid #f59e0b;
+    color: #92400e;
+    font-size: 0.75rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
   }
 
   .kpro-slide-bottom-banner {
