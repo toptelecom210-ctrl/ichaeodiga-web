@@ -1314,6 +1314,7 @@ export const KPRO_HERO_SLIDES: KproHeroSlide[] = [
 
 export interface KproComparisonSlide {
   id: string;
+  diffMan?: number;
   starBadge?: string;
   starQuote?: string;
   starType?: "seven" | "five" | "fourNine";
